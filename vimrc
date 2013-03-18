@@ -1,3 +1,7 @@
+" instantiate pathogen
+" https://github.com/tpope/vim-pathogen
+execute pathogen#infect()
+
 " basic formatting
 set showmatch   " show matching brackets
 set nowrap      " do not wrap lines
@@ -48,6 +52,9 @@ endif
 
 "set clipboard=unnamed   " alias the unnamed register to the + register for X Windoes
 
+syntax on
 " dark background
 set background=dark
+" solarized
+colorscheme solarized
 

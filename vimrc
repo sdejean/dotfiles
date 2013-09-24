@@ -23,6 +23,11 @@ if has("folding")
         set foldlevel=1         " folds with a higher level will be closed
 endif
 
+" mouse options
+if has("mouse")
+    set mouse=a
+endif
+
 " search options
 if has("extra_search")
         set incsearch       " incremental search or find-as-you-type

@@ -41,3 +41,22 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# RESET BASH PROMPT
+red=$(tput setaf 1)
+yellow=$(tput setaf 3)
+green=$(tput setaf 2)
+reset=$(tput sgr0a)
+
+shopt -s compat31
+if [[ ${HOSTNAME} =~ ".*prd.*" ]]; then
+    PS1='[\[$red\]\u@\h: \W\[$reset\]] \$ '
+elif [[ ${HOSTNAME} =~ ".*stg.*" ]]; then
+    PS1='[\[$yellow\]\u@\h: \W\[$reset\]] \$ '
+elif [[ ${HOSTNAME} =~ ".*dev.*" ]]; then
+    PS1='[\[$green\]\u@\h: \W\[$reset\]] \$ '
+else
+    PS1='[\u@\h: \W] \$ '
+fi
+export PS1
+

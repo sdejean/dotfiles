@@ -42,21 +42,22 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# RESET BASH PROMPT
+## ENVIRONMENT-BASED BASH PROMPT COLORIZATION ##
+# Define color pallete
 red=$(tput setaf 1)
-yellow=$(tput setaf 3)
-green=$(tput setaf 2)
-reset=$(tput sgr0a)
+ylw=$(tput setaf 3)
+grn=$(tput setaf 2)
+reset=$(tput sgr0)
 
-shopt -s compat31
-if [[ ${HOSTNAME} =~ ".*prd.*" ]]; then
-    PS1='[\[$red\]\u@\h: \W\[$reset\]] \$ '
-elif [[ ${HOSTNAME} =~ ".*stg.*" ]]; then
-    PS1='[\[$yellow\]\u@\h: \W\[$reset\]] \$ '
-elif [[ ${HOSTNAME} =~ ".*dev.*" ]]; then
-    PS1='[\[$green\]\u@\h: \W\[$reset\]] \$ '
+shopt -s compat31   # Bash 3.1 behavior for "=~" matching
+if [[ ${HOSTNAME} =~ ".*prd.*" ]]; then         # PRD
+    PS1='[\[${red}\]\u@\h:\[${reset}\] \W]\$ '
+elif [[ ${HOSTNAME} =~ ".*stg.*" ]]; then       # STG
+    PS1='[\[${ylw}\]\u@\h:\[${reset}\] \W]\$ '
+elif [[ ${HOSTNAME} =~ ".*dev.*" ]]; then       # DEV
+    PS1='[\[${grn}\]\u@\h:\[${reset}\] \W]\$ '
 else
-    PS1='[\u@\h: \W] \$ '
+    PS1='[\u@\h: \W ] \$ '
 fi
 export PS1
 

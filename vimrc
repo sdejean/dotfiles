@@ -1,3 +1,8 @@
+" initial directives
+set encoding=utf-8
+set fileencoding=utf-8
+set termencoding=utf-8
+
 " instantiate pathogen
 " https://github.com/tpope/vim-pathogen
 execute pathogen#infect()

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+tstamp=$(date +%Y%m%d%H%M%S)
+
+if [[ -d .git ]]; then
+    CWD=$(pwd)
+elif [[ -d $(git rev-parse --git-dir 2>/dev/null) ]]; then
+    CWD=$(pwd)
+fi
+
+if [[ -z ${CWD} ]]; then
+    echo "Must run ${0} from dotfiles working directory"
+    exit 1
+fi
+
+echo "Copying bash dotfiles to ${HOME}"
+# bash
+files="bashrc bash_aliases bash_profile profile"
+for file in ${files};
+do
+    if [[ -f ${CWD}/${file} ]]; then
+        if [[ -f ${HOME}/.${file} ]]; then
+            mv -v ${HOME}/.${file} ${HOME}/.${file}.${tstamp}
+        fi
+        cp -v ${CWD}/${file} ${HOME}/.${file}
+    fi
+done
+
+# vim
+
+# tmux

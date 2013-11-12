@@ -1,27 +1,26 @@
 #!/bin/bash
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
 
-# import shell-agnostic settings
-if [ -f ~/.profile ]; then
-        source ~/.profile
-fi
-
-# import aliases
-if [ -f ~/.bash_aliases ]; then
-        source ~/.profile
+if [[ -f ${HOME}/.bash_aliases ]]; then
+    . ${HOME}/.bash_aliases
 fi
 
 # ignore duplicates in history, ignore spaces
 HISTCONTROL=ignoredups:ignorespace
+HISTSIZE=1024
 HISTFILESIZE=4096
-6HISTSIZE=1024
 
 # append to history, don't replace
 shopt -s histappend
+# update the values of LINES and COLUMNS after each command
+shopt -s checkwinsize
+
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
 
 # color prompt if $COLORTERM is set
-if [[ -n ${COLORTERM} ]]; then
-        PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-fi
 if [ -e /usr/share/terminfo/x/xterm-256color ]; then
         export TERM='xterm-256color'
 elif [ -e /usr/share/terminfo/x/xterm-16color ]; then
@@ -30,34 +29,37 @@ else
         export TERM='xterm-color'
 fi
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && \
-            eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-
-    alias less='less --RAW-CONTROL-CHARS'
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
 ## ENVIRONMENT-BASED BASH PROMPT COLORIZATION ##
 # Define color pallete
 red=$(tput setaf 1)
 ylw=$(tput setaf 3)
 grn=$(tput setaf 2)
+wht=$(tput setaf 7)
 reset=$(tput sgr0)
 
-shopt -s compat31   # Bash 3.1 behavior for "=~" matching
-if [[ ${HOSTNAME} =~ ".*prd.*" ]]; then         # PRD
-    PS1='[\[${red}\]\u@\h:\[${reset}\] \W]\$ '
-elif [[ ${HOSTNAME} =~ ".*stg.*" ]]; then       # STG
-    PS1='[\[${ylw}\]\u@\h:\[${reset}\] \W]\$ '
-elif [[ ${HOSTNAME} =~ ".*dev.*" ]]; then       # DEV
-    PS1='[\[${grn}\]\u@\h:\[${reset}\] \W]\$ '
-else
-    PS1='[\u@\h: \W ] \$ '
+if [[ ${TERM} =~ "xterm" ]]; then
+    shopt -s compat31   # Bash 3.1 behavior for "=~" matching
+    if [[ ${HOSTNAME} =~ ".*prd.*" ]]; then         # PRD
+        PS1='[\[${red}\]\u@\h:\[${reset}\] \W]\$ '
+    elif [[ ${HOSTNAME} =~ ".*stg.*" ]]; then       # STG
+        PS1='[\[${ylw}\]\u@\h:\[${reset}\] \W]\$ '
+    elif [[ ${HOSTNAME} =~ ".*dev.*" ]]; then       # DEV
+        PS1='[\[${grn}\]\u@\h:\[${reset}\] \W]\$ '
+    else
+        PS1='[\[${wht}\]\u@\h:\[${reset}\] \W]\$ '
+    fi
+    export PS1
+    # solarized
+    if [ -f ${HOME}/src/dircolors-solarized/dircolors.ansi-dark ]; then
+        eval $(dircolors ${HOME}/src/dircolors-solarized/dircolors.ansi-dark)
+    fi
 fi
-export PS1
+
+# powerline
+#if [ -f ${HOME}/powerline/scripts/powerline ]; then
+#    export PATH=${PATH}:${HOME}/powerline/scripts
+#fi
+#if [ -f ~/powerline/powerline/bindings/bash/powerline.sh ]; then
+#    echo . ~/powerline/powerline/bindings/bash/powerline.sh
+#fi
 

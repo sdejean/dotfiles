@@ -29,6 +29,8 @@ else
         export TERM='xterm-color'
 fi
 
+PROMPT_COMMAND="printf \"\033]0;%s@%s:%s\007\" \"${USER}\" \"${HOSTNAME%%.*}\" \"${PWD/#$HOME/~}\""
+
 ## ENVIRONMENT-BASED BASH PROMPT COLORIZATION ##
 # Define color pallete
 red=$(tput setaf 1)
@@ -40,13 +42,13 @@ reset=$(tput sgr0)
 if [[ ${TERM} =~ "xterm" ]]; then
     shopt -s compat31   # Bash 3.1 behavior for "=~" matching
     if [[ ${HOSTNAME} =~ ".*prd.*" ]]; then         # PRD
-        PS1='[\[${red}\]\u@\h:\[${reset}\] \W]\$ '
+        PS1='\[${red}\]\u@\h:\[${reset}\]\W \$ '
     elif [[ ${HOSTNAME} =~ ".*stg.*" ]]; then       # STG
-        PS1='[\[${ylw}\]\u@\h:\[${reset}\] \W]\$ '
+        PS1='\[${ylw}\]\u@\h:\[${reset}\]\W \$ '
     elif [[ ${HOSTNAME} =~ ".*dev.*" ]]; then       # DEV
-        PS1='[\[${grn}\]\u@\h:\[${reset}\] \W]\$ '
+        PS1='\[${grn}\]\u@\h:\[${reset}\]\W \$ '
     else
-        PS1='[\[${wht}\]\u@\h:\[${reset}\] \W]\$ '
+        PS1='\[${wht}\]\u@\h:\[${reset}\]\W \$ '
     fi
     export PS1
     # solarized

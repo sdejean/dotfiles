@@ -70,3 +70,5 @@ let g:solarized_termcolors=16
 let g:solarized_termtrans=1
 colorscheme solarized
 
+" powerline
+set rtp+=~/powerline/powerline/bindings/vim

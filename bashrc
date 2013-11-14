@@ -29,7 +29,19 @@ else
         export TERM='xterm-color'
 fi
 
-PROMPT_COMMAND="printf \"\033]0;%s@%s:%s\007\" \"${USER}\" \"${HOSTNAME%%.*}\" \"${PWD/#$HOME/~}\""
+if [[ -z ${PROMPT_COMMAND} ]]; then
+    case ${TERM} in
+        xterm*)
+            PROMPT_COMMAND="printf \"\033]0;%s@%s:%s\007\" \"${USER}\" \"${HOSTNAME%%.*}\" \"${PWD/#$HOME/~}\""
+            ;;
+        screen)
+            PROMPT_COMMAND="printf \"\033]0;%s@%s:%s\033\\\" \"${USER}\" \"${HOSTNAME%%.*}\" \"${PWD/#$HOME/~}\""
+            ;;
+        *)
+            PROMPT_COMMAND="printf \"\033]0;%s@%s:%s\007\" \"${USER}\" \"${HOSTNAME%%.*}\" \"${PWD/#$HOME/~}\""
+            ;;
+    esac
+fi
 
 ## ENVIRONMENT-BASED BASH PROMPT COLORIZATION ##
 # Define color pallete

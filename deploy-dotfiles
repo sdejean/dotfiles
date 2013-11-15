@@ -2,6 +2,25 @@
 
 tstamp=$(date +%Y%m%d%H%M%S)
 
+# test for the git command
+git=$(which git)
+if [[ $? -ne 0 ]]; then
+    echo "${0} needs the git command to run"
+    exit 1
+fi
+
+# set opt dir
+OPT=${HOME}/opt
+if [[ ! -d ${OPT} ]]; then
+    echo "Creating opt dir: ${OPT}"
+    mkdir -pv ${OPT}
+    if [[ $? -ne 0 ]]; then
+        echo "Error, could not create opt dir"
+        exit 1
+    fi
+fi
+
+# check that we are within the git repo
 if [[ -d .git ]]; then
     CWD=$(pwd)
 elif [[ -d $(git rev-parse --git-dir 2>/dev/null) ]]; then
@@ -29,3 +48,28 @@ done
 # vim
 
 # tmux
+
+# submodules
+sub_status=$(git submodule status |grep -v -)
+if [[ $? -ne 0 ]]; then
+    echo "Initializing and updating submodules"
+    git submodule init && git submodule update
+    if [[ $? -ne 0 ]]; then
+        echo "Error initializing submodules"
+        exit 1
+    fi
+fi
+
+for sub in $(git submodule | awk '{ print $2 }'); do
+    echo "Linking submodule ${sub}"
+    link=${OPT}/${sub}
+    if [[ -L ${link} ]]; then
+        echo "    Removing link for submodule: ${sub}"
+        rm -v ${link}
+    fi
+    ln --symbolic --verbose ${CWD}/${sub} ${link}
+    if [[ $? -ne 0 ]]; then
+        echo "Error linking submodule: ${sub}"
+        exit 1
+    fi
+done

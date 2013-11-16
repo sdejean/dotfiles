@@ -1,24 +1,6 @@
 #!/bin/bash
-
+reponame=$(basename $(pwd))
 tstamp=$(date +%Y%m%d%H%M%S)
-
-# test for the git command
-git=$(which git)
-if [[ $? -ne 0 ]]; then
-    echo "${0} needs the git command to run"
-    exit 1
-fi
-
-# set opt dir
-OPT=${HOME}/opt
-if [[ ! -d ${OPT} ]]; then
-    echo "Creating opt dir: ${OPT}"
-    mkdir -pv ${OPT}
-    if [[ $? -ne 0 ]]; then
-        echo "Error, could not create opt dir"
-        exit 1
-    fi
-fi
 
 # check that we are within the git repo
 if [[ -d .git ]]; then
@@ -32,24 +14,50 @@ if [[ -z ${CWD} ]]; then
     exit 1
 fi
 
+############################# SCAFFOLDING ######################################
+# test for the git command
+git=$(which git)
+if [[ $? -ne 0 ]]; then
+    echo "${0} needs the git command to run"
+    exit 1
+fi
+
+# set backup dir
+BACKUP=${HOME}/.${reponame}-backup
+if [[ ! -d ${BACKUP} ]]; then
+    echo "Creating backup dir: ${BACKUP}"
+    mkdir -pv ${BACKUP}
+    if [[ $? -ne 0 ]]; then
+        echo "Error, could not create backup dir"
+        exit 1
+    fi
+fi
+
+# set opt dir
+OPT=${HOME}/opt
+if [[ ! -d ${OPT} ]]; then
+    echo "Creating opt dir: ${OPT}"
+    mkdir -pv ${OPT}
+    if [[ $? -ne 0 ]]; then
+        echo "Error, could not create opt dir"
+        exit 1
+    fi
+fi
+
+################################# BASH #########################################
 echo "Copying bash dotfiles to ${HOME}"
-# bash
-files="bashrc bash_aliases bash_profile profile"
-for file in ${files};
+dotfiles="bashrc bash_aliases bash_profile profile"
+for file in ${dotfiles};
 do
     if [[ -f ${CWD}/${file} ]]; then
         if [[ -f ${HOME}/.${file} ]]; then
-            mv -v ${HOME}/.${file} ${HOME}/.${file}.${tstamp}
+            mv -v ${HOME}/.${file} ${HOME}/.${file}.${reponame}-${tstamp}
         fi
         cp -v ${CWD}/${file} ${HOME}/.${file}
     fi
 done
 
-# vim
-
-# tmux
-
-# submodules
+############################## SUBMODULES ######################################
 sub_status=$(git submodule status |grep -v -)
 if [[ $? -ne 0 ]]; then
     echo "Initializing and updating submodules"
@@ -73,3 +81,24 @@ for sub in $(git submodule | awk '{ print $2 }'); do
         exit 1
     fi
 done
+
+################################## VIM #########################################
+dotfiles="vim vimrc"
+for file in ${dotfiles};
+do
+    if [[ -f ${CWD}/${file} || -d ${CWD}/${file} ]]; then
+        if [[ -f ${HOME}/.${file} || -d ${HOME}/.${file} ]]; then
+            mv -v ${HOME}/.${file} ${HOME}/.${file}.${reponame}-${tstamp}
+        fi
+        cp -rv ${CWD}/${file} ${HOME}/.${file}
+    fi
+done
+
+# add solarized to pathogens path
+if [[ -d ${OPT}/solarized/vim-colors-solarized && -d ${HOME}/.vim/bundle ]]; then
+    ln --symbolic --verbose ${OPT}/solarized/vim-colors-solarized ${HOME}/.vim/bundle/
+fi
+
+################################# TMUX #########################################
+
+

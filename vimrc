@@ -71,4 +71,6 @@ let g:solarized_termtrans=1
 colorscheme solarized
 
 " powerline
-set rtp+=~/powerline/powerline/bindings/vim
+"set rtp+=~/.vim/bundle/vim-powerline
+set laststatus=2    " Always display the statusline in all windows
+set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the statusline)

@@ -86,17 +86,38 @@ done
 dotfiles="vim vimrc"
 for file in ${dotfiles};
 do
-    if [[ -f ${CWD}/${file} || -d ${CWD}/${file} ]]; then
         if [[ -f ${HOME}/.${file} || -d ${HOME}/.${file} ]]; then
             mv -v ${HOME}/.${file} ${HOME}/.${file}.${reponame}-${tstamp}
         fi
-        cp -rv ${CWD}/${file} ${HOME}/.${file}
-    fi
+
+        echo "[FILE: ${file}]"
+        ##  Special case for vimrc:
+        #   vimrc has been broken up into several different files based on 
+        #   installed plugins, any new plugins that should be referenced in 
+        #   vimrc should be added to its own config file and "cat"-ed here.
+        if [[ ${file} == 'vimrc' && -f ${CWD}/vimrc-base ]]; then
+            echo "Writing out file: '${HOME}/.${file}'" 
+            cat \
+                ${CWD}/vimrc-base \
+                ${CWD}/vimrc-ext-pathogen   \
+                ${CWD}/vimrc-ext-solarized  \
+                ${CWD}/vimrc-ext-powerline  \
+                > ${HOME}/.${file}
+        else
+            if [[ -f ${CWD}/${file} || -d ${CWD}/${file} ]]; then
+                echo "Deploying file '${CWD}/${file}' to '${HOME}/.${file}'"
+                cp -rv ${CWD}/${file} ${HOME}/.${file}
+            fi
+        fi
 done
 
 # add solarized to pathogens path
 if [[ -d ${OPT}/solarized/vim-colors-solarized && -d ${HOME}/.vim/bundle ]]; then
     ln --symbolic --verbose ${OPT}/solarized/vim-colors-solarized ${HOME}/.vim/bundle/
+fi
+
+if [[ -d ${OPT}/powerline/powerline/bindings/vim && -d ${HOME}/.vim/bundle ]]; then
+    ln --symbolic --verbose ${OPT}/powerline/powerline/bindings/vim ${HOME}/.vim/bundle/vim-powerline
 fi
 
 ################################# TMUX #########################################

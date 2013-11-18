@@ -8,6 +8,7 @@ There is a bash script called deploy-dotfiles within the root of this project
 directory.  The script will backup and deploy config files for the following:
 * bash
 * vim
+
 The deploy script also sets up important scaffolding and required submodules:
 * solarized
 * powerline

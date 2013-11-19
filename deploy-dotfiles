@@ -110,6 +110,10 @@ do
         fi
 done
 
+if [[ ! -d ${HOME}/.vim/bundle ]]; then
+    mkdir -v ${HOME}/.vim/bundle
+fi
+
 # add solarized to pathogens path
 if [[ -d ${OPT}/solarized/vim-colors-solarized && -d ${HOME}/.vim/bundle ]]; then
     ln --symbolic --verbose ${OPT}/solarized/vim-colors-solarized ${HOME}/.vim/bundle/

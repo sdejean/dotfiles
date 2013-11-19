@@ -51,7 +51,7 @@ for file in ${dotfiles};
 do
     if [[ -f ${CWD}/${file} ]]; then
         if [[ -f ${HOME}/.${file} ]]; then
-            mv -v ${HOME}/.${file} ${HOME}/.${file}.${reponame}-${tstamp}
+            mv -v ${HOME}/.${file} ${BACKUP}/.${file}.${reponame}-${tstamp}
         fi
         cp -v ${CWD}/${file} ${HOME}/.${file}
     fi
@@ -87,10 +87,9 @@ dotfiles="vim vimrc"
 for file in ${dotfiles};
 do
         if [[ -f ${HOME}/.${file} || -d ${HOME}/.${file} ]]; then
-            mv -v ${HOME}/.${file} ${HOME}/.${file}.${reponame}-${tstamp}
+            mv -v ${HOME}/.${file} ${BACKUP}/.${file}.${reponame}-${tstamp}
         fi
 
-        echo "[FILE: ${file}]"
         ##  Special case for vimrc:
         #   vimrc has been broken up into several different files based on 
         #   installed plugins, any new plugins that should be referenced in 

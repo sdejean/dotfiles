@@ -28,8 +28,8 @@
 			"theme": "default"
 		},
 		"tmux": {
-			"colorscheme": "default",
-			"theme": "default"
+			"colorscheme": "solarized",
+			"theme": "custom"
 		},
 		"vim": {
 			"colorscheme": "solarized",

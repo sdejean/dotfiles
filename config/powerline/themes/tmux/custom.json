@@ -1,0 +1,46 @@
+{
+	"default_module": "powerline.segments.common",
+	"segment_data": {
+        "hostname": {
+            "before": "❑ "
+        },
+		"uptime": {
+			"before": "⇑ "
+		},
+		"external_ip": {
+			"before": "ⓦ  "
+		},
+		"date": {
+			"before": "⌚ "
+		}
+	},
+	"segments": {
+        "left": [
+            {
+                "name": "hostname",
+                "args": {
+                    "only_if_ssh": false,
+                    "exclude_domain": true
+                },
+                "width": "auto"
+            },
+            {
+                "name": "user",
+                "align": "r",
+                "width": "auto"
+            }
+        ],
+		"right": [
+            {
+                "name": "date"
+            },
+			{
+				"name": "date",
+				"args": {
+					"format": "%H:%M:%S",
+					"istime": true
+				}
+			}
+		]
+	}
+}

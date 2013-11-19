@@ -21,9 +21,9 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # color prompt if $COLORTERM is set
-if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+if [[ $(tput -Txterm-256color colors) -eq "256" ]]; then
         export TERM='xterm-256color'
-elif [ -e /usr/share/terminfo/x/xterm-16color ]; then
+elif [[ $(tput -Txterm-16color colors) -eq "16" ]]; then
         export TERM='xterm-16color'
 else
         export TERM='xterm-color'

@@ -44,6 +44,21 @@ if [[ ! -d ${OPT} ]]; then
     fi
 fi
 
+################################ CONFIG ########################################
+echo "Copying .${CONFDIR} files to ${HOME}/.${CONFDIR}"
+CONFDIR=config
+if [[ ! -d ${BACKUP}/${CONFDIR} ]]; then
+    mkdir -v ${BACKUP}/${CONFDIR}.${reponame}-${tstamp}
+fi
+
+for dir in $(find ${CWD}/${CONFDIR} -mindepth 1 -maxdepth 1 -type d); do
+    dir=$(basename ${dir})
+    echo ${dir}
+    echo mv -v ${HOME}/.${CONFDIR}/${dir} ${BACKUP}/${CONFDIR}.${reponame}-${tstamp}/${dir}
+    cp -rv ${CWD}/${CONFDIR}/${dir} ${HOME}/.${CONFDIR}/
+done
+exit 0
+
 ################################# BASH #########################################
 echo "Copying bash dotfiles to ${HOME}"
 dotfiles="bashrc bash_aliases bash_profile profile"
@@ -59,6 +74,8 @@ done
 
 ############################## SUBMODULES ######################################
 sub_status=$(git submodule status |grep -v -)
+
+# Initialize top-level modules
 if [[ $? -ne 0 ]]; then
     echo "Initializing and updating submodules"
     git submodule init && git submodule update
@@ -69,7 +86,12 @@ if [[ $? -ne 0 ]]; then
 fi
 
 for sub in $(git submodule | awk '{ print $2 }'); do
-    echo "Linking submodule ${sub}"
+    echo "Initializing and updating the submodules FOR submodule '${sub}'"
+    cd ${CWD}/${sub}
+    git submodule init && git submodule update
+    cd .. 
+
+    echo "Linking submodule '${sub}'"
     link=${OPT}/${sub}
     if [[ -L ${link} ]]; then
         echo "    Removing link for submodule: ${sub}"

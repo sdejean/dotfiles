@@ -67,10 +67,9 @@ if [[ ${TERM} =~ "xterm" ]]; then
     fi
 fi
 
-# powerline
-#if [ -f ${HOME}/powerline/scripts/powerline ]; then
-#    export PATH=${PATH}:${HOME}/powerline/scripts
-#fi
+if [ -f ${HOME}/opt/powerline/scripts/powerline ]; then
+    export PATH=${PATH}:${HOME}/opt/powerline/scripts
+fi
 #if [ -f ~/powerline/powerline/bindings/bash/powerline.sh ]; then
 #    echo . ~/powerline/powerline/bindings/bash/powerline.sh
 #fi

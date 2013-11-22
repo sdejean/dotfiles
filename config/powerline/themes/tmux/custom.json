@@ -2,7 +2,10 @@
 	"default_module": "powerline.segments.common",
 	"segment_data": {
         "hostname": {
-            "before": "❑ "
+            "before": "❑"
+        },
+        "user": {
+            "before": "☺"
         },
 		"uptime": {
 			"before": "⇑ "
@@ -22,24 +25,27 @@
                     "only_if_ssh": false,
                     "exclude_domain": true
                 },
-                "width": "auto"
+                "width": 32,
+                "align": "l"
             },
             {
                 "name": "user",
-                "align": "r",
-                "width": "auto"
+                "width": 32,
+                "align": "l"
             }
         ],
 		"right": [
             {
-                "name": "date"
+                "name": "date",
+                "align": "r"
             },
 			{
 				"name": "date",
 				"args": {
 					"format": "%H:%M:%S",
 					"istime": true
-				}
+				},
+                "align": "r"
 			}
 		]
 	}

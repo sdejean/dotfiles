@@ -54,8 +54,8 @@ fi
 for dir in $(find ${CWD}/${CONFDIR} -mindepth 1 -maxdepth 1 -type d); do
     dir=$(basename ${dir})
     echo ${dir}
-    echo mv -v ${HOME}/.${CONFDIR}/${dir} ${BACKUP}/${CONFDIR}.${reponame}-${tstamp}/${dir}
-    cp -rv ${CWD}/${CONFDIR}/${dir} ${HOME}/.${CONFDIR}/
+    echo mv --verbose ${HOME}/.${CONFDIR}/${dir} ${BACKUP}/${CONFDIR}.${reponame}-${tstamp}/${dir}
+    echo ln --symbolic --verbose ${CWD}/${CONFDIR}/${dir} ${HOME}/.${CONFDIR}/
 done
 exit 0
 
@@ -66,9 +66,9 @@ for file in ${dotfiles};
 do
     if [[ -f ${CWD}/${file} ]]; then
         if [[ -f ${HOME}/.${file} ]]; then
-            mv -v ${HOME}/.${file} ${BACKUP}/.${file}.${reponame}-${tstamp}
+            mv --verbose ${HOME}/.${file} ${BACKUP}/.${file}.${reponame}-${tstamp}
         fi
-        cp -v ${CWD}/${file} ${HOME}/.${file}
+        cp --verbose ${CWD}/${file} ${HOME}/.${file}
     fi
 done
 
@@ -95,7 +95,7 @@ for sub in $(git submodule | awk '{ print $2 }'); do
     link=${OPT}/${sub}
     if [[ -L ${link} ]]; then
         echo "    Removing link for submodule: ${sub}"
-        rm -v ${link}
+        rm --verbose ${link}
     fi
     ln --symbolic --verbose ${CWD}/${sub} ${link}
     if [[ $? -ne 0 ]]; then

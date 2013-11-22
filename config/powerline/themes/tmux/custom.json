@@ -2,10 +2,10 @@
 	"default_module": "powerline.segments.common",
 	"segment_data": {
         "hostname": {
-            "before": "❑"
+            "before": "❑ "
         },
         "user": {
-            "before": "☺"
+            "before": "☺ "
         },
 		"uptime": {
 			"before": "⇑ "
@@ -15,7 +15,10 @@
 		},
 		"date": {
 			"before": "⌚ "
-		}
+		},
+        "system_load": {
+            "before": "☭ "
+        }
 	},
 	"segments": {
         "left": [
@@ -25,24 +28,29 @@
                     "only_if_ssh": false,
                     "exclude_domain": true
                 },
-                "width": 32,
+                "width": 24,
                 "align": "l"
             },
             {
                 "name": "user",
-                "width": 32,
+                "width": 10,
                 "align": "l"
             }
         ],
 		"right": [
             {
-                "name": "date",
+                "name": "system_load",
+                "args": {
+                    "threshold_bad":  3,
+                    "threshold_good": 1,
+                    "track_cpu_count": true
+                },
                 "align": "r"
             },
 			{
 				"name": "date",
 				"args": {
-					"format": "%H:%M:%S",
+					"format": "%Y-%m-%d %H:%M:%S",
 					"istime": true
 				},
                 "align": "r"

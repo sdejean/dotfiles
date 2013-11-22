@@ -3,7 +3,7 @@
 	"groups": {
 		"background:divider": { "fg": "gray5", "bg": "lightyellow" },
 		"session": { "fg": "white", "bg": "gray10", "attr": ["bold"] },
-		"user": { "fg": "white", "bg": "gray5", "attr": ["bold"] },
+		"user": { "fg": "white", "bg": "gray6", "attr": ["bold"] },
 		"superuser": { "fg": "white", "bg": "red", "attr": ["bold"] },
 		"date": { "fg": "gray8", "bg": "gray2" },
 		"time": { "fg": "white", "bg": "darkgreencopper", "attr": ["bold"] },

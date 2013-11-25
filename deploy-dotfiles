@@ -73,8 +73,8 @@ for dir in $(find ${CWD}/${CONFDIR} -mindepth 1 -maxdepth 1 -type d); do
     dir=$(basename ${dir})
     echo ${dir}
     if [[ ! -L ${HOME}/.${CONFDIR}/${dir} ]]; then
-        echo mv --verbose ${HOME}/.${CONFDIR}/${dir} ${BACKUP}/${CONFDIR}.${reponame}-${tstamp}/${dir}
-        echo ln --symbolic --verbose ${CWD}/${CONFDIR}/${dir} ${HOME}/.${CONFDIR}/
+        mv --verbose ${HOME}/.${CONFDIR}/${dir} ${BACKUP}/${CONFDIR}.${reponame}-${tstamp}/${dir}
+        ln --symbolic --verbose ${CWD}/${CONFDIR}/${dir} ${HOME}/.${CONFDIR}/
     fi
 done
 

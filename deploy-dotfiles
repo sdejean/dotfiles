@@ -27,7 +27,7 @@ check_link_and_backup () {
     # check to see if the file is a link, if not, backup
     if [[ ! -L $1 ]]; then
         mkdir -pv ${backupdir}/$(basename ${file}).${reponame}-${tstamp}
-        mv --verbose ${file} ${backupdir}/$(basename ${file}).${reponame}-${tstamp}
+        mv -v ${file} ${backupdir}/$(basename ${file}).${reponame}-${tstamp}
     fi
 }
 
@@ -62,35 +62,6 @@ if [[ ! -d ${OPT} ]]; then
     fi
 fi
 
-################################ CONFIG ########################################
-echo "Copying .${CONFDIR} files to ${HOME}/.${CONFDIR}"
-CONFDIR=config
-if [[ ! -d ${BACKUP}/${CONFDIR} ]]; then
-    mkdir -v ${BACKUP}/${CONFDIR}.${reponame}-${tstamp}
-fi
-
-for dir in $(find ${CWD}/${CONFDIR} -mindepth 1 -maxdepth 1 -type d); do
-    dir=$(basename ${dir})
-    echo ${dir}
-    if [[ ! -L ${HOME}/.${CONFDIR}/${dir} ]]; then
-        mv --verbose ${HOME}/.${CONFDIR}/${dir} ${BACKUP}/${CONFDIR}.${reponame}-${tstamp}/${dir}
-        ln --symbolic --verbose ${CWD}/${CONFDIR}/${dir} ${HOME}/.${CONFDIR}/
-    fi
-done
-
-################################# BASH #########################################
-echo "Copying bash dotfiles to ${HOME}"
-dotfiles="bashrc bash_aliases bash_profile profile"
-for file in ${dotfiles};
-do
-    if [[ -f ${CWD}/${file} ]]; then
-        if [[ -f ${HOME}/.${file} ]]; then
-            mv --verbose ${HOME}/.${file} ${BACKUP}/.${file}.${reponame}-${tstamp}
-        fi
-        cp --verbose ${CWD}/${file} ${HOME}/.${file}
-    fi
-done
-
 ############################## SUBMODULES ######################################
 sub_status=$(git submodule status |grep -v -)
 
@@ -114,12 +85,46 @@ for sub in $(git submodule | awk '{ print $2 }'); do
     link=${OPT}/${sub}
     if [[ -L ${link} ]]; then
         echo "    Removing link for submodule: ${sub}"
-        rm --verbose ${link}
+        rm -v ${link}
     fi
-    ln --symbolic --verbose ${CWD}/${sub} ${link}
+    ln -sv ${CWD}/${sub} ${link}
     if [[ $? -ne 0 ]]; then
         echo "Error linking submodule: ${sub}"
         exit 1
+    fi
+done
+
+################################ CONFIG ########################################
+CONFDIR=config
+echo "Copying .${CONFDIR} files to ${HOME}/.${CONFDIR}"
+if [[ ! -d ${BACKUP}/${CONFDIR} ]]; then
+    mkdir -v ${BACKUP}/${CONFDIR}.${reponame}-${tstamp}
+fi
+
+if [[ ! -d ${HOME}/.${CONFDIR} ]]; then
+    echo "Error! directory ${HOME}/.${CONFDIR} does not exist"
+    mkdir -v ${HOME}/.${CONFDIR}
+fi
+
+for dir in $(find ${CWD}/${CONFDIR} -mindepth 1 -maxdepth 1 -type d); do
+    dir=$(basename ${dir})
+    echo ${dir}
+    if [[ ! -L ${HOME}/.${CONFDIR}/${dir} ]]; then
+        mv -v ${HOME}/.${CONFDIR}/${dir} ${BACKUP}/${CONFDIR}.${reponame}-${tstamp}/${dir}
+        ln -sv ${CWD}/${CONFDIR}/${dir} ${HOME}/.${CONFDIR}/
+    fi
+done
+
+################################# BASH #########################################
+echo "Copying bash dotfiles to ${HOME}"
+dotfiles="bashrc bash_aliases bash_profile profile"
+for file in ${dotfiles};
+do
+    if [[ -f ${CWD}/${file} ]]; then
+        if [[ -f ${HOME}/.${file} ]]; then
+            mv -v ${HOME}/.${file} ${BACKUP}/.${file}.${reponame}-${tstamp}
+        fi
+        cp -v ${CWD}/${file} ${HOME}/.${file}
     fi
 done
 
@@ -157,11 +162,11 @@ fi
 
 # add solarized to pathogens path
 if [[ -d ${OPT}/solarized/vim-colors-solarized && -d ${HOME}/.vim/bundle ]]; then
-    ln --symbolic --verbose ${OPT}/solarized/vim-colors-solarized ${HOME}/.vim/bundle/
+    ln -sv ${OPT}/solarized/vim-colors-solarized ${HOME}/.vim/bundle/
 fi
 
 if [[ -d ${OPT}/powerline/powerline/bindings/vim && -d ${HOME}/.vim/bundle ]]; then
-    ln --symbolic --verbose ${OPT}/powerline/powerline/bindings/vim ${HOME}/.vim/bundle/vim-powerline
+    ln -sv ${OPT}/powerline/powerline/bindings/vim ${HOME}/.vim/bundle/vim-powerline
 fi
 
 ################################# TMUX #########################################
@@ -169,7 +174,7 @@ file='tmux.conf'
 echo "Linking file '${file}' to '${HOME}'"
 if [[ -f ${HOME}/.${file} ]]; then
     mv -v ${HOME}/.${file} ${BACKUP}/.${file}.${reponame}-${tstamp}
-    ln --symbolic --verbose ${CWD}/${file} ${HOME}/.${file}
+    ln -sv ${CWD}/${file} ${HOME}/.${file}
 elif [[ -L ${HOME}/.${file} ]]; then
     cp -v ${HOME}/.${file} ${BACKUP}/.${file}.${reponame}-${tstamp}
 fi

@@ -1,0 +1,44 @@
+#!/bin/bash
+
+_backup () {
+    backupdir=$1
+    backupsfx=$2    # usually ${reponame}-${tstamp} ($tstamp format "%Y%m%d%H%M%S")
+    target=$3
+
+    # make sure args aren't empty
+    if [[ -z $1 || -z $2 ]]; then
+        echo "Function '${0}' requires a backupdir and target as arguments"
+        exit 1
+    fi
+
+    mkdir -pv ${backupdir}/$(basename ${target}).${backupsfx}
+    mv -v ${target} ${backupdir}/$(basename ${target}).${backupsfx}
+}
+
+
+_check_dir_exists () {
+    target=$1
+    if [[ ! -d ${target} ]]; then
+        echo "Warning: Directory '${target}' does not exist, creating"
+        mkdir -v ${target}
+    fi
+}
+
+_check_normal_file_and_backup () {
+    backupdir=$1
+    target=$2
+
+    # make sure args aren't empty
+    if [[ -z $1 || -z $2 ]]; then
+        echo "Function '${0}' requires a backupdir and target as arguments"
+        exit 1
+    fi
+
+    # check if we have a backup destination
+    _check_dir_exists ${backupdir}
+
+    # check if the file is a symlink, if NOT, back it up
+    if [[ ! -L ${target} ]]; then
+        _backup ${backupdir} "${reponame}-${tstamp}" "${target}"
+    fi
+}

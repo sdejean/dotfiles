@@ -28,12 +28,10 @@
                     "only_if_ssh": false,
                     "exclude_domain": true
                 },
-                "width": 24,
                 "align": "l"
             },
             {
                 "name": "user",
-                "width": 10,
                 "align": "l"
             }
         ],
@@ -50,7 +48,7 @@
 			{
 				"name": "date",
 				"args": {
-					"format": "%Y-%m-%d %H:%M:%S",
+					"format": "%Y-%m-%d %H:%M",
 					"istime": true
 				},
                 "align": "r"

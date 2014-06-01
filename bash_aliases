@@ -11,4 +11,7 @@ fi
 
 alias ll='ls -latrhF'
 
-
+if [ $(uname) == 'Darwin' ]; then
+    alias ls='ls -G'
+    alias ll='ls -latrhFG'
+fi

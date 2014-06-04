@@ -20,24 +20,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# color prompt if $COLORTERM is set
-if [ -z ${DISPLAY} ]; then
-    export TERM="linux"
-else
-    if [[ $(tput -Txterm-256color colors) -eq "256" ]]; then
-            export TERM='xterm-256color'
-    elif [[ $(tput -Txterm-16color colors) -eq "16" ]]; then
-            export TERM='xterm-16color'
-    else
-            export TERM='xterm-color'
-    fi
-fi
-
 case ${TERM} in
 xterm*|rxvt*)
     PS1_PREFIX="\[\e]0;\u@\h:\w\a\]"
     ;;
-screen)
+screen*)
     PS1_PREFIX="\[\e]0;\u@\h:\w\e\]"
     ;;
 *)

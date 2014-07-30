@@ -171,6 +171,7 @@ fi
 
 ################################# TMUX #########################################
 file='tmux.conf'
+tmuxdir='.tmux'
 echo "Linking file '${file}' to '${HOME}'"
 if [[ -f ${HOME}/.${file} ]]; then
     mv -v ${HOME}/.${file} ${BACKUP}/.${file}.${reponame}-${tstamp}
@@ -179,4 +180,23 @@ elif [[ -L ${HOME}/.${file} ]]; then
     cp -v ${HOME}/.${file} ${BACKUP}/.${file}.${reponame}-${tstamp}
 fi
 
+# backup tmuxdir
+if [[ -d ${HOME}/${tmuxdir} ]]; then
+    mv -v ${HOME}/${tmuxdir} ${BACKUP}/${tmuxdir}.${reponame}-${tstamp}
+fi
+
+if [[ ! -d ${HOME}/${tmuxdir} ]]; then
+    mkdir -v ${HOME}/${tmuxdir}
+fi
+
+tmuxcolordir='colors'
+if [[ ! -d ${HOME}/${tmuxdir}/${tmuxcolordir} ]]; then
+    mkdir -v ${HOME}/${tmuxdir}/${tmuxcolordir}
+fi
+
+colors='tmuxcolors-256.conf'
+echo "Copying tmux colorscheme '${file}' to '${HOME}'"
+if [[ ! -f ${HOME}/${tmuxdir}/${tmuxcolordir}/${colors} ]]; then
+    cp -v ${CWD}/solarized/tmux/${colors} ${HOME}/${tmuxdir}/${tmuxcolordir}/.${colors}
+fi
 

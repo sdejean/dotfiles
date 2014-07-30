@@ -1,3 +1,4 @@
+# vim:set filetype=sh:
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -17,6 +18,33 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "${HOME}/bin" ] ; then
+    export PATH="${HOME}/bin:${PATH}"
+fi
+
+# set EDITOR
+if [ -x /usr/bin/vim ] ; then
+    export EDITOR=/usr/bin/vim
+elif [ -x $(which vim) ] ; then
+    export EDITOR=$(which vim)
+elif [ -x $(which vi) ] ; then
+    export EDITOR=$(which vi)
+fi
+
+# arcanist/phabricator
+if [ -d "${HOME}/opt/arcanist/bin" ] ; then
+    export PATH="${HOME}/opt/arcanist/bin:${PATH}"
+fi
+
+# rbenv
+if [ -d "${HOME}/.rbenv/bin" ] ; then
+    export PATH="${HOME}/.rbenv/bin:${PATH}"
+    if [[ $(type rbenv) ]]; then
+        eval "$(rbenv init -)"
+    fi
+fi
+
+# powerline general
+if [ -f "${HOME}/opt/powerline/scripts/powerline" ]; then
+    export PATH="${PATH}:${HOME}/opt/powerline/scripts"
 fi

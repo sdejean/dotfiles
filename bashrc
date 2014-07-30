@@ -1,4 +1,5 @@
 #!/bin/bash
+# vim:set filetype=sh:
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -22,6 +23,7 @@ fi
 
 case ${TERM} in
 xterm*|rxvt*)
+    export TERM='xterm-256color'
     PS1_PREFIX="\[\e]0;\u@\h:\w\a\]"
     ;;
 screen*)
@@ -58,9 +60,7 @@ if [[ ${TERM} =~ "xterm" ]]; then
     fi
 fi
 
-if [ -f ${HOME}/opt/powerline/scripts/powerline ]; then
-    export PATH=${PATH}:${HOME}/opt/powerline/scripts
-fi
+# powerline bash-specific bindings
 #if [ -f ~/powerline/powerline/bindings/bash/powerline.sh ]; then
 #    echo . ~/powerline/powerline/bindings/bash/powerline.sh
 #fi

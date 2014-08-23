@@ -117,7 +117,7 @@ done
 
 ################################# BASH #########################################
 echo "Copying bash dotfiles to ${HOME}"
-dotfiles="bashrc bash_aliases bash_profile profile"
+dotfiles="bashrc bash_aliases bash_profile profile profile_methods"
 for file in ${dotfiles};
 do
     if [[ -f ${CWD}/${file} ]]; then

@@ -8,6 +8,8 @@
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
+# Profile helper methods
+. "${HOME}/.profile_methods"
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -15,6 +17,11 @@ if [ -n "$BASH_VERSION" ]; then
     if [ -f "$HOME/.bashrc" ]; then
 	. "$HOME/.bashrc"
     fi
+fi
+
+# if on a mac, lets do the path_helper
+if [ "$(uname)" == 'Darwin' ] ; then
+    mac_path_helper
 fi
 
 # set PATH so it includes user's private bin if it exists

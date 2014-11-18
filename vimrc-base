@@ -9,25 +9,15 @@ set nowrap      " do not wrap lines
 set number      " line numbers
 
 " indent / tab setting
-set autoindent      " copy indent from current line upon newline
-set tabstop=4       " tabs are 4 spaces wide
+set tabstop=8       " tabs are 4 spaces wide
 set softtabstop=4   " number of spaces to count for <tab> and <bs> operations
 set shiftwidth=4    " number of spaces for each step of autoindent
 set expandtab       " Expand tabs to space characters
-
-" autocmd-related functions
-if has("autocmd")
-    " filetype detectiona
-    filetype on
-    filetype indent on
-    filetype plugin on
-
-    " jump to the last position when reopening a file
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-elseif has("cindent")
-    set cindent
+set autoindent      " copy indent from current line upon newline
+if has("cident")
+        set cindent     " smart indent in certain conditions, ex. braces, keywords
 elseif has("smartindent")
-    set smartindent     " smart indent in certain conditions, ex. braces, keywords
+        set smartindent     " smart indent in certain conditions, ex. braces, keywords
 endif
 
 if has("folding")

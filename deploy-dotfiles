@@ -160,13 +160,17 @@ if [[ ! -d ${HOME}/.vim/bundle ]]; then
     mkdir -v ${HOME}/.vim/bundle
 fi
 
-# add solarized to pathogens path
+# add plugins to pathogen
 if [[ -d ${OPT}/solarized/vim-colors-solarized && -d ${HOME}/.vim/bundle ]]; then
     ln -sv ${OPT}/solarized/vim-colors-solarized ${HOME}/.vim/bundle/
 fi
 
 if [[ -d ${OPT}/powerline/powerline/bindings/vim && -d ${HOME}/.vim/bundle ]]; then
     ln -sv ${OPT}/powerline/powerline/bindings/vim ${HOME}/.vim/bundle/vim-powerline
+fi
+
+if [[ -d ${OPT}/syntastic && -d ${HOME}/.vim/bundle ]]; then
+    ln -sv ${OPT}/syntastic ${HOME}/.vim/bundle/
 fi
 
 ################################# TMUX #########################################

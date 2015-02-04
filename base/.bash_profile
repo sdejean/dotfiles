@@ -3,12 +3,12 @@
 
 # .profile
 if [ -f "${HOME}/.profile" ]; then
-	. ${HOME}/.profile
+    . ${HOME}/.profile
 fi
 
 # bashrc
 if [ -f "${HOME}/.bashrc" ]; then
-	. ${HOME}/.bashrc
+    . ${HOME}/.bashrc
 fi
 
 # User specific environment and startup programs

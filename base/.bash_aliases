@@ -1,4 +1,5 @@
 #!/bin/bash
+# vim:set filetype=sh:
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -9,9 +10,11 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-alias ll='ls -latrhF'
+alias ll='ls -la'
+alias llr='ls -latrhF'
 
 if [ $(uname) == 'Darwin' ]; then
     alias ls='ls -G'
-    alias ll='ls -latrhFG'
+    alias ll='ls -la'
+    alias llr='ls -latrhFG'
 fi

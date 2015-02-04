@@ -7,3 +7,6 @@
 [submodule "base/.vim/vim-pathogen"]
 	path = base/.vim/vim-pathogen
 	url = git@github.com:tpope/vim-pathogen.git
+[submodule "base/opt/powerline"]
+	path = base/opt/powerline
+	url = git@github.com:powerline/powerline.git

@@ -7,3 +7,6 @@
 [submodule "base/opt/powerline"]
 	path = base/opt/powerline
 	url = git@github.com:powerline/powerline.git
+[submodule "base/opt/solarized"]
+	path = base/opt/solarized
+	url = git://github.com/altercation/solarized.git

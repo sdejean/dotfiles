@@ -1,9 +1,9 @@
 [submodule "solarized"]
-	path = solarized
-	url = https://github.com/altercation/solarized.git
-[submodule "vim/vim-pathogen"]
-	path = vim/vim-pathogen
+    path = solarized
+    url = https://github.com/altercation/solarized.git
+[submodule "base/.vim/vim-pathogen"]
+    path = base/.vim/vim-pathogen
     url = https://github.com/tpope/vim-pathogen.git
 [submodule "dircolors-solarized"]
-	path = dircolors-solarized
-	url = https://github.com/seebi/dircolors-solarized.git
+    path = dircolors-solarized
+    url = https://github.com/seebi/dircolors-solarized.git

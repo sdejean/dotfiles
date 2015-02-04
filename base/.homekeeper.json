@@ -1,0 +1,12 @@
+{
+    "base": "/home/sdejean/src/dotfiles/base,
+    "directory": "/home/sdejean/src/dotfiles/base",
+    "excludes": [
+        ".git",
+        ".gitignore",
+        ".gitmodules",
+        "LICENSE",
+        "README.md"
+    ],
+    "override": false
+}

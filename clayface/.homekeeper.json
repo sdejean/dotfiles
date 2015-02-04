@@ -1,0 +1,12 @@
+{
+    "base": "/Users/sdejean/Source/dotfiles/base,
+    "directory": "/Users/sdejean/Source/dotfiles/clayface",
+    "excludes": [
+        ".git",
+        ".gitignore",
+        ".gitmodules",
+        "LICENSE",
+        "README.md"
+    ],
+    "override": true
+}

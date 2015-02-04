@@ -10,3 +10,6 @@
 [submodule "base/opt/solarized"]
 	path = base/opt/solarized
 	url = git://github.com/altercation/solarized.git
+[submodule "base/.vim/bundle/syntastic"]
+	path = base/.vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git

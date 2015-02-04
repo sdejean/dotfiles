@@ -4,9 +4,6 @@
 [submodule "vim/vim-pathogen"]
 	path = vim/vim-pathogen
     url = https://github.com/tpope/vim-pathogen.git
-[submodule "powerline"]
-	path = powerline
-	url = https://github.com/Lokaltog/powerline.git
 [submodule "dircolors-solarized"]
 	path = dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git

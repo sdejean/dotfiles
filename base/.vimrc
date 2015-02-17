@@ -14,11 +14,16 @@ set softtabstop=4   " number of spaces to count for <tab> and <bs> operations
 set shiftwidth=4    " number of spaces for each step of autoindent
 set expandtab       " Expand tabs to space characters
 set autoindent      " copy indent from current line upon newline
-if has("cident")
-        set cindent     " smart indent in certain conditions, ex. braces, keywords
-elseif has("smartindent")
-        set smartindent     " smart indent in certain conditions, ex. braces, keywords
+
+" syntax highlighting
+if has("syntax")
+    syntax on
 endif
+
+if has("cident")
+    set cindent     " smart indent in certain conditions, ex. braces, keywords
+endif
+filetype indent plugin on
 
 if has("folding")
     set nofoldenable        " dont fold by default
@@ -39,26 +44,26 @@ endif
 set ignorecase      " case-insensitive search
 set smartcase       " case-sensitive search if a cap is used
 
-" syntax highlighting
-if has("syntax")
-    syntax on
-endif
-
 if has("showcmd")
     set showcmd     " Show (partial) command in status line.
 endif
 
 "set clipboard=unnamed   " alias the unnamed register to the + register for X Windoes
 
+
 " instantiate pathogen
 " https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 
-" solarized - dark background
+
+"" solarized 
+" dark background
 set background=dark
+" solarized
 let g:solarized_termcolors=16
 let g:solarized_termtrans=1
 colorscheme solarized
+
 
 "" powerline
 "" Un-comment the following line if pathogen is not installed

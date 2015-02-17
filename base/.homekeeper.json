@@ -1,12 +1,20 @@
 {
     "base": "/home/sdejean/src/dotfiles/base,
     "directory": "/home/sdejean/src/dotfiles/base",
+    "override": false,
     "excludes": [
         ".git",
         ".gitignore",
         ".gitmodules",
+        "_lib",
+        "deploy-dotfiles",
         "LICENSE",
         "README.md"
     ],
-    "override": false
+    "includes": [
+        ".config/powerline",
+        ".config/Terminal",
+        "opt/powerline",
+        "opt/solarized"
+    ]
 }

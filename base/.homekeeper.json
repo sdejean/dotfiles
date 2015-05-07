@@ -3,6 +3,7 @@
     "directory": "/home/sdejean/src/dotfiles/base",
     "override": false,
     "excludes": [
+        "bin",
         ".git",
         ".gitignore",
         ".gitmodules",
@@ -11,7 +12,7 @@
         "LICENSE",
         "README.md"
     ],
-    "includes": [
+    "cherrypicks": [
         ".config/powerline",
         ".config/Terminal",
         "opt/powerline",

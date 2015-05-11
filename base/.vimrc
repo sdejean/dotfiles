@@ -1,3 +1,18 @@
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Plugin 'gmarik/vundle'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+filetype on
+
 " initial directives
 set encoding=utf-8
 set fileencoding=utf-8
@@ -14,16 +29,11 @@ set softtabstop=4   " number of spaces to count for <tab> and <bs> operations
 set shiftwidth=4    " number of spaces for each step of autoindent
 set expandtab       " Expand tabs to space characters
 set autoindent      " copy indent from current line upon newline
-
-" syntax highlighting
-if has("syntax")
-    syntax on
-endif
-
 if has("cident")
-    set cindent     " smart indent in certain conditions, ex. braces, keywords
+        set cindent     " smart indent in certain conditions, ex. braces, keywords
+elseif has("smartindent")
+        set smartindent     " smart indent in certain conditions, ex. braces, keywords
 endif
-filetype indent plugin on
 
 if has("folding")
     set nofoldenable        " dont fold by default
@@ -44,16 +54,16 @@ endif
 set ignorecase      " case-insensitive search
 set smartcase       " case-sensitive search if a cap is used
 
+" syntax highlighting
+if has("syntax")
+    syntax on
+endif
+
 if has("showcmd")
     set showcmd     " Show (partial) command in status line.
 endif
 
 "set clipboard=unnamed   " alias the unnamed register to the + register for X Windoes
-
-
-" instantiate pathogen
-" https://github.com/tpope/vim-pathogen
-execute pathogen#infect()
 
 
 "" solarized 
@@ -71,3 +81,12 @@ colorscheme solarized
 set laststatus=2    " Always display the statusline in all windows
 set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0

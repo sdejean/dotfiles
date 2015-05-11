@@ -1,6 +1,6 @@
 {
-    "base": "/home/sdejean/src/dotfiles/base,
-    "directory": "/home/sdejean/src/dotfiles/base",
+    "base": "/home/sdejean/dotfiles/base,
+    "directory": "/home/sdejean/dotfiles/clayface",
     "override": false,
     "excludes": [
         "bin",
@@ -17,5 +17,5 @@
         ".config/Terminal",
         "opt/powerline",
         "opt/solarized"
-    ]
+    ],
 }

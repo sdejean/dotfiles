@@ -1,6 +1,6 @@
 {
-    "base": "/Users/sdejean/Source/dotfiles/base,
-    "directory": "/Users/sdejean/Source/dotfiles/clayface",
+    "base": "/Users/sdejean/dotfiles/base",
+    "directory": "/Users/sdejean/dotfiles/clayface",
     "excludes": [
         ".git",
         ".gitignore",
@@ -8,5 +8,21 @@
         "LICENSE",
         "README.md"
     ],
-    "override": true
+    "override": true,
+    "excludes": [
+        "bin",
+        ".git",
+        ".gitignore",
+        ".gitmodules",
+        "_lib",
+        "deploy-dotfiles",
+        "LICENSE",
+        "README.md"
+    ],
+    "cherrypicks": [
+        ".config/powerline",
+        ".config/Terminal",
+        "opt/powerline",
+        "opt/solarized"
+    ]
 }

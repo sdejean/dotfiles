@@ -1,7 +1,7 @@
 {
-    "base": "/home/sdejean/dotfiles/base,
+    "base": "/home/sdejean/dotfiles/base",
     "directory": "/home/sdejean/dotfiles/clayface",
-    "override": false,
+    "override": true,
     "excludes": [
         "bin",
         ".git",
@@ -17,5 +17,5 @@
         ".config/Terminal",
         "opt/powerline",
         "opt/solarized"
-    ],
+    ]
 }

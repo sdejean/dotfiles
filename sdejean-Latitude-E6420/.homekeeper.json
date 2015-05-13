@@ -1,0 +1,21 @@
+{
+    "base": "/home/sdejean/dotfiles/base",
+    "directory": "/home/sdejean/dotfiles/sdejean-Latitude-E6420",
+    "override": true,
+    "excludes": [
+        "bin",
+        ".git",
+        ".gitignore",
+        ".gitmodules",
+        "_lib",
+        "deploy-dotfiles",
+        "LICENSE",
+        "README.md"
+    ],
+    "cherrypicks": [
+        ".config/powerline",
+        ".config/Terminal",
+        "opt/powerline",
+        "opt/solarized"
+    ]
+}

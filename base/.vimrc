@@ -3,14 +3,18 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" Vundle updates itself
 Plugin 'gmarik/vundle'
+
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'rodjek/vim-puppet'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'stephenmckinney/vim-solarized-powerline'
+Plugin 'tmux-plugins/vim-tmux'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-git'

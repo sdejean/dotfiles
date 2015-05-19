@@ -1,13 +1,6 @@
 {
     "base": "/Users/sdejean/dotfiles/base",
     "directory": "/Users/sdejean/dotfiles/clayface",
-    "excludes": [
-        ".git",
-        ".gitignore",
-        ".gitmodules",
-        "LICENSE",
-        "README.md"
-    ],
     "override": true,
     "excludes": [
         "bin",
@@ -22,6 +15,7 @@
     "cherrypicks": [
         ".config/powerline",
         ".config/Terminal",
+        "bin/tat",
         "opt/powerline",
         "opt/solarized"
     ]

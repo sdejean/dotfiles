@@ -15,6 +15,7 @@
     "cherrypicks": [
         ".config/powerline",
         ".config/Terminal",
+        "bin/tat",
         "opt/powerline",
         "opt/solarized"
     ]

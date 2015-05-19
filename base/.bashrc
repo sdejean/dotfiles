@@ -42,7 +42,7 @@ grn=$(tput setaf 2)
 wht=$(tput setaf 7)
 reset=$(tput sgr0)
 
-if [[ ${TERM} =~ "xterm" ]]; then
+if [[ ${TERM} =~ 'screen' || ${TERM} =~ 'xterm' ]]; then
     shopt -s compat31   # Bash 3.1 behavior for "=~" matching
     if [[ ${HOSTNAME} =~ ".*prd.*" ]]; then         # PRD
         PS1="${PS1_PREFIX}\[${red}\]\u@\h:\[${reset}\]\W \$ "

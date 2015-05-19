@@ -31,6 +31,10 @@ if has('filetype')
     filetype plugin on
 endif
 
+" automatically rebalance windows on vim resize
+" instruct vim to automatically re-balance the visible splits as tmux panes
+" are created, destroyed, or resized
+autocmd VimResized * :wincmd =
 " initial directives
 set encoding=utf-8
 set fileencoding=utf-8

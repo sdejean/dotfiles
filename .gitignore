@@ -1,6 +1,7 @@
 *.swp
 
 */.tmux/plugins/*
+*/.tmux/resurrect/*
 
 */.vim/bundle/*
 */.vim/.netrwhist

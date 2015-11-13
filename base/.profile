@@ -55,3 +55,8 @@ fi
 if [ -f "${HOME}/opt/powerline/scripts/powerline" ]; then
     export PATH="${PATH}:${HOME}/opt/powerline/scripts"
 fi
+
+# github's hub tool, https://github.com/github/hub
+if [ -x "${HOME}/opt/hub/hub" ]; then
+    export PATH="${PATH}:${HOME}/opt/hub"
+fi

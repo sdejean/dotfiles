@@ -22,6 +22,7 @@ fi
 # if on a mac, lets do the path_helper
 if [ "$(uname)" == 'Darwin' ] ; then
     mac_path_helper
+    export HOMEBREW_GITHUB_API_TOKEN=b374cee74e007cdb063451672c4079b14d0444b6
 fi
 
 # set PATH so it includes user's private bin if it exists
@@ -60,3 +61,4 @@ fi
 if [ -x "${HOME}/opt/hub/hub" ]; then
     export PATH="${PATH}:${HOME}/opt/hub"
 fi
+

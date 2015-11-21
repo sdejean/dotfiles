@@ -21,6 +21,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-rails'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'solarnz/thrift.vim'
 
 " syntax highlighting
 if has("syntax")

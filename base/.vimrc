@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
 " Vundle updates itself
 Plugin 'gmarik/vundle'
@@ -23,6 +23,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'solarnz/thrift.vim'
 
+call vundle#end()
 " syntax highlighting
 if has("syntax")
     syntax on
@@ -32,6 +33,8 @@ if has('filetype')
     filetype indent on
     filetype plugin on
 endif
+
+set backspace=indent,eol,start
 
 " automatically rebalance windows on vim resize
 " instruct vim to automatically re-balance the visible splits as tmux panes

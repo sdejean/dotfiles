@@ -22,6 +22,7 @@ Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-rails'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'solarnz/thrift.vim'
+Plugin 'ntpeters/vim-better-whitespace'
 
 call vundle#end()
 " syntax highlighting

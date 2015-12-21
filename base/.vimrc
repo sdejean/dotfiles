@@ -2,29 +2,32 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
-
 " Vundle updates itself
 Plugin 'gmarik/vundle'
-
+" powerline and colorscheme
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'pearofducks/ansible-vim'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'rodjek/vim-puppet'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
 Plugin 'stephenmckinney/vim-solarized-powerline'
+" nerdtree
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+" tmux
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tmux-plugins/vim-tmux'
+" formatting helpers
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'ntpeters/vim-better-whitespace'
+" syntax helpers
+Plugin 'scrooloose/syntastic'
+Plugin 'pearofducks/ansible-vim'
+Plugin 'rodjek/vim-puppet'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-rails'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'solarnz/thrift.vim'
-Plugin 'ntpeters/vim-better-whitespace'
-
 call vundle#end()
+
 " syntax highlighting
 if has("syntax")
     syntax on

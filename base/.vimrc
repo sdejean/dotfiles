@@ -6,7 +6,7 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 " powerline and colorscheme
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'bling/vim-airline'
 Plugin 'stephenmckinney/vim-solarized-powerline'
 " nerdtree
 Plugin 'scrooloose/nerdtree'
@@ -101,11 +101,13 @@ let g:solarized_termtrans=1
 colorscheme solarized
 
 
-"" powerline
+"" airline
 "" Un-comment the following line if pathogen is not installed
-" set rtp+=~/.vim/bundle/vim-powerline
 set laststatus=2    " Always display the statusline in all windows
 set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+let g:airline_powerline_fonts = 1
+
 
 " syntastic
 set statusline+=%#warningmsg#

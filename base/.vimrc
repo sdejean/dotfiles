@@ -8,6 +8,8 @@ Plugin 'gmarik/vundle'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'stephenmckinney/vim-solarized-powerline'
+" dbext
+Plugin 'vim-scripts/dbext.vim'
 " nerdtree
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -24,6 +26,7 @@ Plugin 'rodjek/vim-puppet'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-git'
+Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-rails'
 Plugin 'solarnz/thrift.vim'
 call vundle#end()

@@ -26,13 +26,8 @@ if [ "$(uname)" == 'Darwin' ] ; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "${HOME}/.local/bin" ] ; then
-    export PATH="${HOME}/.local/bin:${PATH}"
-fi
-
-if [ -d "${HOME}/bin" ] ; then
-    export PATH="${HOME}/bin:${PATH}"
-fi
+[[ -d "${HOME}/.local/bin" ]] && export PATH="${HOME}/.local/bin:${PATH}"
+[[ -d "${HOME}/bin" ]] && export PATH="${HOME}/bin:${PATH}"
 
 # set EDITOR
 if [ -x /usr/bin/vim ] ; then
@@ -66,3 +61,4 @@ if [ -x "${HOME}/opt/hub/hub" ]; then
     export PATH="${PATH}:${HOME}/opt/hub"
 fi
 
+[[ -d "${HOME}/go" ]] && export GOPATH="${HOME}/go" && export PATH="${GOPATH}/bin:${PATH}"

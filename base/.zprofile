@@ -7,6 +7,7 @@ fi
 
 [[ -d "${HOME}/.local/bin" ]] && export PATH="${HOME}/.local/bin:${PATH}"
 [[ -d "${HOME}/bin" ]] && export PATH="${HOME}/bin:${PATH}"
+[[ -d "${HOME}/go" ]] && export GOPATH="${HOME}/go" && export PATH="${GOPATH}/bin:${PATH}"
 
 if [ -d "${HOME}/.rbenv/bin" ]; then
     export PATH="${HOME}/.rbenv/bin:${PATH}"

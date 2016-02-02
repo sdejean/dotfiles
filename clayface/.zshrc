@@ -53,7 +53,7 @@ plugins=(gitfast)
 
 # User configuration
 
-export PATH="/home/blaq/.rbenv/shims:/home/blaq/.rbenv/bin:/home/blaq/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="${PATH}"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

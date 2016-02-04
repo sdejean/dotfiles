@@ -7,6 +7,14 @@ export ZSH="${HOME}/.oh-my-zsh"
 # time that oh-my-zsh is loaded.
 ZSH_THEME="jreese"
 
+# term settings
+export TERM='xterm-256color'
+
+# solarized
+if [ -f ${HOME}/src/dircolors-solarized/dircolors.ansi-dark ]; then
+    eval $(dircolors ${HOME}/src/dircolors-solarized/dircolors.ansi-dark)
+fi
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 

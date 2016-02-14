@@ -59,6 +59,10 @@ set showmatch   " show matching brackets
 set nowrap      " do not wrap lines
 set number      " line numbers
 
+" vim split settings
+set splitbelow
+set splitright
+
 " indent / tab setting
 set tabstop=8       " tabs are 4 spaces wide
 set softtabstop=4   " number of spaces to count for <tab> and <bs> operations

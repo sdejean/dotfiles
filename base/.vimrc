@@ -34,7 +34,7 @@ Plugin 'solarnz/thrift.vim'
 call vundle#end()
 
 " syntax highlighting
-if has("syntax")
+if has('syntax')
     syntax on
 endif
 if has('filetype')
@@ -65,13 +65,13 @@ set softtabstop=4   " number of spaces to count for <tab> and <bs> operations
 set shiftwidth=4    " number of spaces for each step of autoindent
 set expandtab       " Expand tabs to space characters
 set autoindent      " copy indent from current line upon newline
-if has("cident")
+if has('cident')
         set cindent     " smart indent in certain conditions, ex. braces, keywords
-elseif has("smartindent")
+elseif has('smartindent')
         set smartindent     " smart indent in certain conditions, ex. braces, keywords
 endif
 
-if has("folding")
+if has('folding')
     set nofoldenable        " dont fold by default
     set foldmethod=indent   " fold based on indent
     set foldnestmax=10      " deepest fold is 10 levels
@@ -79,18 +79,18 @@ if has("folding")
 endif
 
 " mouse options
-if has("mouse")
+if has('mouse')
     set mouse=a
 endif
 
 " search options
-if has("extra_search")
+if has('extra_search')
     set incsearch   " incremental search or find-as-you-type
 endif
 set ignorecase      " case-insensitive search
 set smartcase       " case-sensitive search if a cap is used
 
-if has("showcmd")
+if has('showcmd')
     set showcmd     " Show (partial) command in status line.
 endif
 

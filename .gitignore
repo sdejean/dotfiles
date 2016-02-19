@@ -3,5 +3,6 @@
 */.tmux/plugins/*
 */.tmux/resurrect/*
 
-*/.vim/bundle/*
 */.vim/.netrwhist
+*/.vim/bundle/*
+*/.vim/view/*

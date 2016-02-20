@@ -5,9 +5,13 @@ if [[ "$(uname)"  == 'Darwin' ]]; then
     export HOMEBREW_GITHUB_API_TOKEN=b374cee74e007cdb063451672c4079b14d0444b6
 fi
 
+WORKSPACE="${HOME}/work"
 [[ -d "${HOME}/.local/bin" ]] && export PATH="${HOME}/.local/bin:${PATH}"
 [[ -d "${HOME}/bin" ]] && export PATH="${HOME}/bin:${PATH}"
-[[ -d "${HOME}/go" ]] && export GOPATH="${HOME}/go" && export PATH="${GOPATH}/bin:${PATH}"
+if [ -d "${WORKSPACE}/go" ]; then
+    export GOPATH="${WORKSPACE}/go" \
+    && export PATH="${GOPATH}/bin:${PATH}"
+fi
 
 if [ -d "${HOME}/.rbenv/bin" ]; then
     export PATH="${HOME}/.rbenv/bin:${PATH}"

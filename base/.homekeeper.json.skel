@@ -13,6 +13,7 @@
         "README.md"
     ],
     "cherrypicks": [
+        ".config/nvim",
         ".config/powerline",
         ".config/Terminal",
         "bin/tat",

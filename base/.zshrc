@@ -57,7 +57,7 @@ fi
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(bundler gem gitfast pip python ruby)
+plugins=(bundler gem gitfast pip python ruby virtualenvwrapper)
 
 # User configuration
 

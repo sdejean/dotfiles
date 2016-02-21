@@ -6,8 +6,8 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 " powerline and colorscheme
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
-Plugin 'stephenmckinney/vim-solarized-powerline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " dbext
 Plugin 'vim-scripts/dbext.vim'
 " nerdtree

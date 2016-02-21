@@ -109,7 +109,6 @@ let g:solarized_termcolors=16
 let g:solarized_termtrans=1
 colorscheme solarized
 
-
 "" airline
 "" Un-comment the following line if pathogen is not installed
 set laststatus=2    " Always display the statusline in all windows
@@ -117,7 +116,7 @@ set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the st
 
 let g:airline_powerline_fonts = 1
 
-" go
+"" go
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -125,7 +124,11 @@ let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-" syntastic
+"" python-mode
+" rope - turn it off, it's slow in python
+let g:pymode_rope = 0
+
+"" syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*

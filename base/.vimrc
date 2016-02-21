@@ -1,5 +1,6 @@
 set nocompatible
 filetype off
+"" Vundle Plugin Manager
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
 " Vundle updates itself
@@ -70,9 +71,9 @@ set shiftwidth=4    " number of spaces for each step of autoindent
 set expandtab       " Expand tabs to space characters
 set autoindent      " copy indent from current line upon newline
 if has('cident')
-        set cindent     " smart indent in certain conditions, ex. braces, keywords
+        set cindent
 elseif has('smartindent')
-        set smartindent     " smart indent in certain conditions, ex. braces, keywords
+        set smartindent
 endif
 
 if has('folding')
@@ -98,10 +99,11 @@ if has('showcmd')
     set showcmd     " Show (partial) command in status line.
 endif
 
-"set clipboard=unnamed   " alias the unnamed register to the + register for X Windoes
+" alias the unnamed register to the + register for X Windoes
+"set clipboard=unnamed
 
 
-"" solarized 
+"" solarized
 " dark background
 set background=dark
 " solarized
@@ -112,21 +114,13 @@ colorscheme solarized
 "" airline
 "" Un-comment the following line if pathogen is not installed
 set laststatus=2    " Always display the statusline in all windows
-set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the
+                    " statusline)
 
 let g:airline_powerline_fonts = 1
 
-"" go
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
 "" python-mode
-" rope - turn it off, it's slow in python
-let g:pymode_rope = 0
+let g:pymode_rope = 0   " rope - turn it off, it's slow in python
 
 "" syntastic
 set statusline+=%#warningmsg#
@@ -140,3 +134,11 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
+
+"" vim-go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1

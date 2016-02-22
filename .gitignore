@@ -1,5 +1,11 @@
 *.swp
 
+*/.config/nvim/after
+*/.config/nvim/autoload
+*/.config/nvim/bundle
+*/.config/nvim/ftplugin
+*/.config/nvim/plugged
+
 */.tmux/plugins/*
 */.tmux/resurrect/*
 

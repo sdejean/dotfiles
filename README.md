@@ -40,6 +40,13 @@ https://github.com/VundleVim/Vundle.vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle
 ```
 
+#### neovim dependencies
+
+```
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
 ### tmux dependencies
 
 You will need to download the Tmux Plugin Manager (TPM):

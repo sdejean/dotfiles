@@ -1,3 +1,4 @@
+#!/bin/bash
 # vim:set filetype=sh:
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
@@ -8,35 +9,43 @@
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
+
 # Profile helper methods
+# shellcheck source=.profile_methods
 . "${HOME}/.profile_methods"
 
 # if running bash
-if [ -n "$BASH_VERSION" ]; then
+if [ -n "${BASH_VERSION}" ]; then
     # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+    # shellcheck source=.bashrc
+    if [ -f "${HOME}/.bashrc" ]; then
+	. "${HOME}/.bashrc"
     fi
 fi
 
 # if on a mac, lets do the path_helper
-if [ "$(uname)" == 'Darwin' ] ; then
+if [ "$(uname)" = 'Darwin' ] ; then
     mac_path_helper
     export HOMEBREW_GITHUB_API_TOKEN=b374cee74e007cdb063451672c4079b14d0444b6
 fi
 
 # set PATH so it includes user's private bin if it exists
-[[ -d "${HOME}/.local/bin" ]] && export PATH="${HOME}/.local/bin:${PATH}"
-[[ -d "${HOME}/bin" ]] && export PATH="${HOME}/bin:${PATH}"
+if [ -d "${HOME}/.local/bin" ] ; then
+    export PATH="${HOME}/.local/bin:${PATH}"
+fi
+if [ -d "${HOME}/bin" ] ; then
+    export PATH="${HOME}/bin:${PATH}"
+fi
 
 # set EDITOR
 if [ -x /usr/bin/vim ] ; then
-    export EDITOR=/usr/bin/vim
-elif [ -x $(which vim) ] ; then
-    export EDITOR=$(which vim)
-elif [ -x $(which vi) ] ; then
-    export EDITOR=$(which vi)
+    EDITOR=/usr/bin/vim
+elif [ -x "$(which vim)" ] ; then
+    EDITOR="$(which vim)"
+elif [ -x "$(which vi)" ] ; then
+    EDITOR="$(which vi)"
 fi
+export EDITOR
 
 # arcanist/phabricator
 if [ -d "${HOME}/opt/arcanist/bin" ] ; then
@@ -46,7 +55,7 @@ fi
 # rbenv
 if [ -d "${HOME}/.rbenv/bin" ] ; then
     export PATH="${HOME}/.rbenv/bin:${PATH}"
-    if [ $(type rbenv) ]; then
+    if [ "$(type rbenv)" ]; then
         eval "$(rbenv init -)"
     fi
 fi

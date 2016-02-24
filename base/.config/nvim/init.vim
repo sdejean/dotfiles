@@ -120,21 +120,25 @@ set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the
 
 let g:airline_powerline_fonts = 1
 
+"" neomake
+autocmd! BufWritePost * Neomake
+let g:neomake_airline = 1
+
 "" python-mode
 let g:pymode_rope = 0   " rope - turn it off, it's slow in python
 
 "" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"
+"let g:syntastic_error_symbol = '✗'
+"let g:syntastic_warning_symbol = '⚠'
 
 "" vim-go
 let g:go_highlight_functions = 1

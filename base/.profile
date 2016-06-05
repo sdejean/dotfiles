@@ -19,14 +19,13 @@ if [ -n "${BASH_VERSION}" ]; then
     # include .bashrc if it exists
     # shellcheck source=.bashrc
     if [ -f "${HOME}/.bashrc" ]; then
-	. "${HOME}/.bashrc"
+        . "${HOME}/.bashrc"
     fi
 fi
 
 # if on a mac, lets do the path_helper
 if [ "$(uname)" = 'Darwin' ] ; then
     mac_path_helper
-    export HOMEBREW_GITHUB_API_TOKEN=b374cee74e007cdb063451672c4079b14d0444b6
 fi
 
 # set PATH so it includes user's private bin if it exists
@@ -38,37 +37,20 @@ if [ -d "${HOME}/bin" ] ; then
 fi
 
 # set EDITOR
-if [ -x /usr/bin/vim ] ; then
-    EDITOR=/usr/bin/vim
-elif [ -x "$(which vim)" ] ; then
-    EDITOR="$(which vim)"
-elif [ -x "$(which vi)" ] ; then
-    EDITOR="$(which vi)"
-fi
-export EDITOR
+which vi >/dev/null && export EDITOR && EDITOR="$(which vi)"
+which vim >/dev/null && export EDITOR && EDITOR="$(which vim)"
 
-# arcanist/phabricator
-if [ -d "${HOME}/opt/arcanist/bin" ] ; then
-    export PATH="${HOME}/opt/arcanist/bin:${PATH}"
-fi
 
-# rbenv
-if [ -d "${HOME}/.rbenv/bin" ] ; then
-    export PATH="${HOME}/.rbenv/bin:${PATH}"
-    if [ "$(type rbenv)" ]; then
-        eval "$(rbenv init -)"
-    fi
-fi
+# External tool setup:
+# - homebrew github api-key token
+# - hub
+# - rbenv
+# - manually installed perl5 for Mac OS
+[[ -f "${HOME}/.shellsetup-brew-token" ]] && . "${HOME}/.shellsetup-brew-token"
+[[ -f "${HOME}/.shellsetup-hub" ]] && . "${HOME}/.shellsetup-hub"
+[[ -f "${HOME}/.shellsetup-rbenv" ]] && . "${HOME}/.shellsetup-rbenv"
+[[ -f "${HOME}/.shellsetup-darwin-perl5" ]] && . "${HOME}/.shellsetup-darwin-perl5"
 
-# powerline general
-if [ -f "${HOME}/opt/powerline/scripts/powerline" ]; then
-    export PATH="${PATH}:${HOME}/opt/powerline/scripts"
-fi
-
-# github's hub tool, https://github.com/github/hub
-if [ -x "${HOME}/opt/hub/hub" ]; then
-    export PATH="${PATH}:${HOME}/opt/hub"
-fi
 
 WORKSPACE="${HOME}/work"
 if [ -d "${WORKSPACE}/go" ]; then

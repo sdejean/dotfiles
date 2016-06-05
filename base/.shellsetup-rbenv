@@ -1,0 +1,11 @@
+# vim: set ft=sh:
+# if rbenv is running
+
+if [ -d "${HOME}/.rbenv/bin" ] ; then
+    export PATH="${HOME}/.rbenv/bin:${PATH}"
+fi
+if type -p "rbenv" > /dev/null ; then
+    if [ "$(type rbenv)" ]; then
+        eval "$(rbenv init -)"
+    fi
+fi

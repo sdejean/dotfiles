@@ -1,0 +1,7 @@
+# vim: set ft=sh:
+# Export homebrew API key
+if [[ "$(uname)"  == 'Darwin' ]]; then
+    if [ -f "${HOME}/.homebrew-api-token" ]; then
+        source "${HOME}/.homebrew-api-token"
+    fi
+fi

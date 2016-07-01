@@ -44,6 +44,10 @@ if has('filetype')
     filetype plugin on
 endif
 
+" extra filetype mappings
+autocmd BufNewFile,BufRead *.template set filetype=json " cloudformation
+
+" set backspace behavior
 set backspace=indent,eol,start
 
 " automatically rebalance windows on vim resize

@@ -60,8 +60,8 @@ if [[ ${TERM} =~ 'screen' || ${TERM} =~ 'xterm' ]]; then
     fi
 fi
 
-# powerline bash-specific bindings
-#if [ -f ~/powerline/powerline/bindings/bash/powerline.sh ]; then
-#    echo . ~/powerline/powerline/bindings/bash/powerline.sh
-#fi
-
+# vim aliases
+alias nv="nvim"
+alias nvo="nvim -O"
+alias v="vim"
+alias vo="vim -O"

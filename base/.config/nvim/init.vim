@@ -100,6 +100,9 @@ if has('showcmd')
     set showcmd     " Show (partial) command in status line.
 endif
 
+" alias the unnamed register to the + register for X Windoes
+set clipboard=unnamedplus
+
 "" solarized
 " dark background
 set background=dark

@@ -104,7 +104,7 @@ if has('showcmd')
 endif
 
 " alias the unnamed register to the + register for X Windoes
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 
 "" solarized

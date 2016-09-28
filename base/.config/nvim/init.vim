@@ -33,12 +33,21 @@ Plug 'klen/python-mode'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'solarnz/thrift.vim'
+Plug 'hashivim/vim-packer'
+Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-vagrant'
+Plug 'pangloss/vim-javascript'
 call plug#end()
 
 " syntax highlighting
 if has('syntax')
     syntax on
 endif
+" filetype based indent and syntax filters
+" With this there is no need for the following plugins:
+" - autoindent
+" - smartindent
+" - cindent
 if has('filetype')
     filetype on
     filetype indent on
@@ -46,6 +55,13 @@ if has('filetype')
 endif
 
 set backspace=indent,eol,start
+
+" indent / tab setting
+set tabstop=8       " tabs are 4 spaces wide
+set softtabstop=4   " number of spaces to count for <tab> and <bs> operations
+set shiftwidth=4    " number of spaces for each step of autoindent
+set expandtab       " Expand tabs to space characters
+set autoindent      " copy indent from current line upon newline
 
 " automatically rebalance windows on vim resize
 " instruct vim to automatically re-balance the visible splits as tmux panes
@@ -64,18 +80,6 @@ set number      " line numbers
 " vim split settings
 set splitbelow
 set splitright
-
-" indent / tab setting
-set tabstop=8       " tabs are 4 spaces wide
-set softtabstop=4   " number of spaces to count for <tab> and <bs> operations
-set shiftwidth=4    " number of spaces for each step of autoindent
-set expandtab       " Expand tabs to space characters
-set autoindent      " copy indent from current line upon newline
-if has('cident')
-        set cindent
-elseif has('smartindent')
-        set smartindent
-endif
 
 if has('folding')
     set nofoldenable        " dont fold by default
@@ -103,6 +107,10 @@ endif
 " alias the unnamed register to the + register for X Windoes
 set clipboard=unnamedplus
 
+" extra filetype mappings
+autocmd BufNewFile,BufRead *.template set filetype=json " cloudformation
+
+""" PLUGIN SETTINGS
 "" solarized
 " dark background
 set background=dark
@@ -119,25 +127,13 @@ set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the
 
 let g:airline_powerline_fonts = 1
 
-"" neomake
-autocmd! BufWritePost * Neomake
-let g:neomake_airline = 1
-
 "" python-mode
 let g:pymode_rope = 0   " rope - turn it off, it's slow in python
 
-"" syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 0
-"
-"let g:syntastic_error_symbol = '✗'
-"let g:syntastic_warning_symbol = '⚠'
+"" neomake
+autocmd! BufWritePost * Neomake
+let g:neomake_airline = 1
+let g:neomake_open_list = 2
 
 "" vim-go
 let g:go_highlight_functions = 1
@@ -146,3 +142,6 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+"" vim-javascript
+let g:javascript_plugin_jsdoc = 1

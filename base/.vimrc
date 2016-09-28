@@ -32,23 +32,36 @@ Plugin 'klen/python-mode'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'solarnz/thrift.vim'
+Plugin 'hashivim/vim-packer'
+Plugin 'hashivim/vim-terraform'
+Plugin 'hashivim/vim-vagrant'
+Plugin 'pangloss/vim-javascript'
 call vundle#end()
 
 " syntax highlighting
 if has('syntax')
     syntax on
 endif
+" filetype based indent and syntax filters
+" With this there is no need for the following plugins:
+" - autoindent
+" - smartindent
+" - cindent
 if has('filetype')
     filetype on
     filetype indent on
     filetype plugin on
 endif
 
-" extra filetype mappings
-autocmd BufNewFile,BufRead *.template set filetype=json " cloudformation
-
 " set backspace behavior
 set backspace=indent,eol,start
+
+" indent / tab setting
+set tabstop=8       " tabs are 4 spaces wide
+set softtabstop=4   " number of spaces to count for <tab> and <bs> operations
+set shiftwidth=4    " number of spaces for each step of autoindent
+set expandtab       " Expand tabs to space characters
+set autoindent      " copy indent from current line upon newline
 
 " automatically rebalance windows on vim resize
 " instruct vim to automatically re-balance the visible splits as tmux panes
@@ -67,18 +80,6 @@ set number      " line numbers
 " vim split settings
 set splitbelow
 set splitright
-
-" indent / tab setting
-set tabstop=8       " tabs are 4 spaces wide
-set softtabstop=4   " number of spaces to count for <tab> and <bs> operations
-set shiftwidth=4    " number of spaces for each step of autoindent
-set expandtab       " Expand tabs to space characters
-set autoindent      " copy indent from current line upon newline
-if has('cident')
-        set cindent
-elseif has('smartindent')
-        set smartindent
-endif
 
 if has('folding')
     set nofoldenable        " dont fold by default
@@ -104,9 +105,12 @@ if has('showcmd')
 endif
 
 " alias the unnamed register to the + register for X Windoes
-set clipboard=unnamedplus
+set clipboard=unnamed
 
+" extra filetype mappings
+autocmd BufNewFile,BufRead *.template set filetype=json " cloudformation
 
+""" PLUGIN SETTINGS
 "" solarized
 " dark background
 set background=dark

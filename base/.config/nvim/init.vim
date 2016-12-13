@@ -2,8 +2,6 @@ set nocompatible
 filetype off
 "" Vundle Plugin Manager
 call plug#begin('~/.config/nvim/plugged/')
-" Vundle updates itself
-Plug 'gmarik/vundle'
 " powerline and colorscheme
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'

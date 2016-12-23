@@ -20,6 +20,7 @@ Plug 'ntpeters/vim-better-whitespace'
 " syntax helpers
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-go'
+Plug 'zchee/deoplete-jedi'
 Plug 'benekastah/neomake'
 Plug 'pearofducks/ansible-vim'
 Plug 'rodjek/vim-puppet'
@@ -127,6 +128,9 @@ let g:airline_powerline_fonts = 1
 
 "" python-mode
 let g:pymode_rope = 0   " rope - turn it off, it's slow in python
+
+"" deoplete
+let g:deoplete#enable_at_startup = 1
 
 "" neomake
 autocmd! BufWritePost * Neomake

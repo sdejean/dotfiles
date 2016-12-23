@@ -78,7 +78,7 @@ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install
 pip install --upgrade pip setuptools
 # Then the rest
 pip install --upgrade ansible-lint
-pip install --upgrade pyflakes pylama pylint
+pip install --upgrade jedi pyflakes pylama pylint
 pip install --upgrade virtualenv virtualenv-clone virtualenvwrapper
 ```
 

@@ -1,42 +1,39 @@
 set nocompatible
 filetype off
-"" Vundle Plugin Manager
-set rtp+=~/.vim/bundle/vundle/
-call vundle#begin()
-" Vundle updates itself
-Plugin 'gmarik/vundle'
+"" junegunn/vim-plug Plugin Manager
+call plug#begin('~/.vim/plugged')
 " powerline and colorscheme
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " dbext
-Plugin 'vim-scripts/dbext.vim'
+Plug 'vim-scripts/dbext.vim'
 " nerdtree
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " tmux
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'tmux-plugins/vim-tmux'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tmux-plugins/vim-tmux'
 " formatting helpers
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'ntpeters/vim-better-whitespace'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'ntpeters/vim-better-whitespace'
 " syntax helpers
-Plugin 'scrooloose/syntastic'
-Plugin 'pearofducks/ansible-vim'
-Plugin 'rodjek/vim-puppet'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-git'
-Plugin 'fatih/vim-go'
-Plugin 'klen/python-mode'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
-Plugin 'solarnz/thrift.vim'
-Plugin 'hashivim/vim-packer'
-Plugin 'hashivim/vim-terraform'
-Plugin 'hashivim/vim-vagrant'
-Plugin 'pangloss/vim-javascript'
-call vundle#end()
+Plug 'scrooloose/syntastic'
+Plug 'pearofducks/ansible-vim'
+Plug 'rodjek/vim-puppet'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'fatih/vim-go'
+Plug 'python-mode/python-mode'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'solarnz/thrift.vim'
+Plug 'hashivim/vim-packer'
+Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-vagrant'
+Plug 'pangloss/vim-javascript'
+call plug#end()
 
 " syntax highlighting
 if has('syntax')

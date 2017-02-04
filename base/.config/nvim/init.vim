@@ -1,6 +1,6 @@
 set nocompatible
 filetype off
-"" Vundle Plugin Manager
+"" junegunn/vim-plug Plugin Manager
 call plug#begin('~/.config/nvim/plugged/')
 " powerline and colorscheme
 Plug 'altercation/vim-colors-solarized'
@@ -28,7 +28,8 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'fatih/vim-go'
-Plug 'klen/python-mode'
+Plug 'vim-scripts/groovy.vim'
+Plug 'python-mode/python-mode'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'solarnz/thrift.vim'
@@ -36,6 +37,7 @@ Plug 'hashivim/vim-packer'
 Plug 'hashivim/vim-terraform'
 Plug 'hashivim/vim-vagrant'
 Plug 'pangloss/vim-javascript'
+Plug 'markcornick/vim-bats'
 call plug#end()
 
 " syntax highlighting

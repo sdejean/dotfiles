@@ -98,3 +98,6 @@ alias nv="nvim"
 alias nvo="nvim -O"
 alias v="vim"
 alias vo="vim -O"
+
+# added by travis gem
+[ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh

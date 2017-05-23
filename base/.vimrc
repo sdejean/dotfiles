@@ -124,6 +124,9 @@ set noshowmode      " Hide the default mode text (e.g. -- INSERT -- below the
 
 let g:airline_powerline_fonts = 1
 
+"" ansible-vim
+let g:ansible_unindent_after_newline = 1
+
 "" python-mode
 let g:pymode_rope = 0   " rope - turn it off, it's slow in python
 

@@ -93,6 +93,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+# ansible aliases
+alias av="ansible-vault"
+
 # vim aliases
 alias nv="nvim"
 alias nvo="nvim -O"
@@ -101,3 +104,5 @@ alias vo="vim -O"
 
 # added by travis gem
 [ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

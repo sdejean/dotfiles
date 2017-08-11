@@ -60,6 +60,9 @@ if [[ ${TERM} =~ 'screen' || ${TERM} =~ 'xterm' ]]; then
     fi
 fi
 
+# ansible aliases
+alias av="ansible-vault"
+
 # vim aliases
 alias nv="nvim"
 alias nvo="nvim -O"

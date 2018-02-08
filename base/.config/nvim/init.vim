@@ -110,6 +110,8 @@ set clipboard=unnamedplus
 
 " extra filetype mappings
 autocmd BufNewFile,BufRead *.template set filetype=json " cloudformation
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal spell
 
 """ PLUGIN SETTINGS
 "" solarized
@@ -132,7 +134,8 @@ let g:airline_powerline_fonts = 1
 let g:ansible_unindent_after_newline = 1
 
 "" python-mode
-let g:pymode_rope = 0   " rope - turn it off, it's slow in python
+let g:pymode_rope = 1   " rope - turn it off, it's slow in python
+let g:pymode_lint_on_write = 1
 
 "" deoplete
 let g:deoplete#enable_at_startup = 1
@@ -152,3 +155,4 @@ let g:go_highlight_build_constraints = 1
 
 "" vim-javascript
 let g:javascript_plugin_jsdoc = 1
+

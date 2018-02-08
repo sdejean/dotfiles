@@ -106,6 +106,8 @@ set clipboard=unnamed
 
 " extra filetype mappings
 autocmd BufNewFile,BufRead *.template set filetype=json " cloudformation
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal spell
 
 """ PLUGIN SETTINGS
 "" solarized
@@ -129,6 +131,7 @@ let g:ansible_unindent_after_newline = 1
 
 "" python-mode
 let g:pymode_rope = 0   " rope - turn it off, it's slow in python
+let g:pymode_lint_on_write = 1
 
 "" syntastic
 set statusline+=%#warningmsg#

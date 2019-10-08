@@ -69,7 +69,16 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
 
-## Extra packages
+## Extra package
+
+### Go
+
+```
+# set GOPATH
+export GOPATH="${HOME}/work/go"
+mkdir -p $GOPATH
+GO111MODULE=on go get golang.org/x/tools/gopls@latest
+```
 
 ### Python
 

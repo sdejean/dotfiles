@@ -1,0 +1,7 @@
+# vim: set ft=sh:
+# GitHub's command line hub tool:
+# https://github.com/github/hub
+# NOTE: This is only useful if it was checked out manually
+if [ -x "${HOME}/opt/hub/hub" ]; then
+    export PATH="${PATH}:${HOME}/opt/hub"
+fi

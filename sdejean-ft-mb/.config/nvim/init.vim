@@ -172,5 +172,5 @@ let g:go_highlight_build_constraints = 1
 let g:javascript_plugin_jsdoc = 1
 
 """ neovim python support config
-let g:python_host_prog = '/home/sdejean/.pyenv/versions/py2nvim/bin/python'
-let g:python3_host_prog = '/home/sdejean/.pyenv/versions/py3nvim/bin/python'
+let g:python_host_prog = '/Users/sdejean/.pyenv/versions/py2nvim/bin/python'
+let g:python3_host_prog = '/Users/sdejean/.pyenv/versions/py3nvim/bin/python'

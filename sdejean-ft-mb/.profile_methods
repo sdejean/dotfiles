@@ -1,0 +1,11 @@
+
+# Homebrew wants all "local" paths (ex. /usr/local/bin) placed in PATH before
+# the standard system paths (ex. /usr/bin).  I don't want to munge the 
+# path_helper files because of possible adverse affects to Mac system services.
+mac_path_helper() {
+    temp_path=$(cat /etc/paths /etc/paths.d/*|grep -v local|perl -pe 's/\n/:/'|perl -pe 's/:$//')
+    temp_path="/usr/local/sbin:${temp_path}"
+    temp_path="/usr/local/bin:${temp_path}"
+    PATH=${temp_path}
+    export PATH
+}

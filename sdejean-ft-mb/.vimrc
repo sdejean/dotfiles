@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 "" junegunn/vim-plug Plugin Manager
-call plug#begin('~/.config/nvim/plugged/')
+call plug#begin('~/.vim/plugged')
 " powerline and colorscheme
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
@@ -18,17 +18,13 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ntpeters/vim-better-whitespace'
 " syntax helpers
-Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-go'
-Plug 'zchee/deoplete-jedi'
-Plug 'benekastah/neomake'
+Plug 'scrooloose/syntastic'
 Plug 'pearofducks/ansible-vim'
 Plug 'rodjek/vim-puppet'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'fatih/vim-go'
-Plug 'vim-scripts/groovy.vim'
 Plug 'python-mode/python-mode'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
@@ -39,14 +35,6 @@ Plug 'hashivim/vim-vagrant'
 Plug 'pangloss/vim-javascript'
 Plug 'markcornick/vim-bats'
 Plug 'heavenshell/vim-jsdoc'
-Plug 'andrewstuart/vim-kubernetes'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'robbles/logstash.vim'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-" fzf - multi-entry selection ui support to LanguageClient
-Plug 'junegunn/fzf'
 call plug#end()
 
 " syntax highlighting
@@ -64,6 +52,7 @@ if has('filetype')
     filetype plugin on
 endif
 
+" set backspace behavior
 set backspace=indent,eol,start
 
 " indent / tab setting
@@ -115,7 +104,7 @@ if has('showcmd')
 endif
 
 " alias the unnamed register to the + register for X Windoes
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " extra filetype mappings
 autocmd BufNewFile,BufRead *.cform set filetype=yaml    " cloudformation
@@ -144,21 +133,21 @@ let g:airline_powerline_fonts = 1
 let g:ansible_unindent_after_newline = 1
 
 "" python-mode
-let g:pymode_rope = 1   " rope - turn it off, it's slow in python
+let g:pymode_rope = 0   " rope - turn it off, it's slow in python
 let g:pymode_lint_on_write = 1
 
-"" deoplete
-let g:deoplete#enable_at_startup = 1
+"" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-"" neomake
-autocmd! BufWritePost * Neomake
-let g:neomake_airline = 1
-let g:neomake_open_list = 2
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 
-""" LanguageServer
-let g:LanguageClient_serverCommands = {
-  \ 'go': ['gopls']
-  \ }
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
 
 "" vim-go
 let g:go_highlight_functions = 1
@@ -168,9 +157,6 @@ let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
+
 "" vim-javascript
 let g:javascript_plugin_jsdoc = 1
-
-""" neovim python support config
-let g:python_host_prog = '/home/sdejean/.pyenv/versions/py2nvim/bin/python'
-let g:python3_host_prog = '/home/sdejean/.pyenv/versions/py3nvim/bin/python'

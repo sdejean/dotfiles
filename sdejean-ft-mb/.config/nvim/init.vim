@@ -10,43 +10,57 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/dbext.vim'
 " nerdtree
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
 " formatting helpers
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ntpeters/vim-better-whitespace'
-" syntax helpers
-Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-go'
-Plug 'zchee/deoplete-jedi'
-Plug 'benekastah/neomake'
-Plug 'pearofducks/ansible-vim'
-Plug 'rodjek/vim-puppet'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-fugitive'
+" fzf - multi-entry selection ui support to LanguageClient
+Plug 'junegunn/fzf'
+" git
 Plug 'tpope/vim-git'
-Plug 'fatih/vim-go'
-Plug 'vim-scripts/groovy.vim'
-Plug 'python-mode/python-mode'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-Plug 'solarnz/thrift.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" syntax helpers - base
+Plug 'Shougo/deoplete.nvim'
+Plug 'benekastah/neomake'
+" syntax helpers - config mgmt
+Plug 'andrewstuart/vim-kubernetes'
+Plug 'pearofducks/ansible-vim'
 Plug 'hashivim/vim-packer'
 Plug 'hashivim/vim-terraform'
 Plug 'hashivim/vim-vagrant'
-Plug 'pangloss/vim-javascript'
-Plug 'markcornick/vim-bats'
-Plug 'heavenshell/vim-jsdoc'
-Plug 'andrewstuart/vim-kubernetes'
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'robbles/logstash.vim'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'rodjek/vim-puppet'
+Plug 'tpope/vim-bundler'
+Plug 'towolf/vim-helm'
+" syntax helpers - base language support
 Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-" fzf - multi-entry selection ui support to LanguageClient
-Plug 'junegunn/fzf'
+Plug 'markcornick/vim-bats'
+" syntax helpers - java support
+Plug 'vim-scripts/groovy.vim'
+Plug 'derekwyatt/vim-scala'
+" syntax helpers - python support
+Plug 'python-mode/python-mode'
+Plug 'zchee/deoplete-jedi'
+" syntax helpers - go support
+Plug 'fatih/vim-go'
+Plug 'zchee/deoplete-go'
+Plug 'sebdah/vim-delve'
+" syntax helpers - ruby support
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'solarnz/thrift.vim'
+" syntax helpers - javascript support
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'   " syntax highlighting for .ts and .d.ts file
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'HerringtonDarkholme/yats.vim' " more TS syntax highlighting, including DOM keywords
+Plug 'ianks/vim-tsx'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 call plug#end()
 
 " syntax highlighting
@@ -149,6 +163,8 @@ let g:pymode_lint_on_write = 1
 
 "" deoplete
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('auto_complete_delay', 250)
+call deoplete#custom#source('LanguageClient', 'min_pattern_length', 2)
 
 "" neomake
 autocmd! BufWritePost * Neomake
@@ -156,9 +172,34 @@ let g:neomake_airline = 1
 let g:neomake_open_list = 2
 
 """ LanguageServer
-let g:LanguageClient_serverCommands = {
-  \ 'go': ['gopls']
+let g:LanguageClient_rootMarkers = {
+  \ 'javascript': ['jsconfig.json'],
+  \ 'typescript': ['tsconfig.json'],
   \ }
+let g:LanguageClient_serverCommands = {
+  \ 'go': ['gopls'],
+  \ 'javascript': ['javascript-typescript-stdio'],
+  \ 'scala': ['metals-vim'],
+  \ 'typescript': ['javascript-typescript-stdio'],
+  \ }
+
+function SetLSPShortcuts()
+  nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+  nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+  nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+  nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+  nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+  nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
+  nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+endfunction()
+
+augroup LSP
+  autocmd!
+  autocmd FileType go,python,scala call SetLSPShortcuts()
+augroup END
 
 "" vim-go
 let g:go_def_mode='gopls'

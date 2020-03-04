@@ -63,3 +63,5 @@ fi
 export ANSIBLE_VAULT_PASSWORD_FILE_ADMIN="${HOME}/.ansible/adminpass"
 export ANSIBLE_VAULT_PASSWORD_FILE_PROD="${HOME}/.ansible/prodpass"
 export ANSIBLE_VAULT_PASSWORD_FILE_DEV="${HOME}/.ansible/devpass"
+
+export PATH="$HOME/.cargo/bin:$PATH"

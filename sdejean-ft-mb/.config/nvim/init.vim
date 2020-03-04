@@ -6,13 +6,18 @@ call plug#begin('~/.config/nvim/plugged/')
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" debugger
+Plug 'sakhnik/nvim-gdb'
 " dbext
 Plug 'vim-scripts/dbext.vim'
 " nerdtree
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
+" vim which key
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " formatting helpers
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ntpeters/vim-better-whitespace'
@@ -27,6 +32,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'benekastah/neomake'
 " syntax helpers - config mgmt
 Plug 'andrewstuart/vim-kubernetes'
+Plug 'deoplete-plugins/deoplete-docker'
 Plug 'pearofducks/ansible-vim'
 Plug 'hashivim/vim-packer'
 Plug 'hashivim/vim-terraform'
@@ -48,6 +54,8 @@ Plug 'zchee/deoplete-jedi'
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
 Plug 'sebdah/vim-delve'
+" syntax helpers - rust support
+Plug 'rust-lang/rust.vim'
 " syntax helpers - ruby support
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
@@ -199,6 +207,8 @@ endfunction()
 augroup LSP
   autocmd!
   autocmd FileType go,python,scala call SetLSPShortcuts()
+  " Run gofmt on save
+  autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 augroup END
 
 "" vim-go
@@ -212,6 +222,9 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_metalinter_autosave=1
+let g:go_metalinter_autosave_enabled=['golint', 'govet', 'typecheck']
+let g:go_metalinter_command='golangci-lint'
 
 "" vim-javascript
 let g:javascript_plugin_jsdoc = 1
